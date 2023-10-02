@@ -30,12 +30,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/number_of_children_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_add_children"/>
+            tools:listitem="@layout/item_add_children" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,11 +72,4 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-
-
-
-
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

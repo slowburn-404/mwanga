@@ -28,7 +28,6 @@ class NumberOfChildrenFragment : Fragment() {
         childrenList.clear()
         addForms()
 
-
         binding.btNext.setOnClickListener {
             findNavController().navigate(R.id.action_numberOfChildrenFragment_to_parentsChildrenFragment)
         }
@@ -39,16 +38,12 @@ class NumberOfChildrenFragment : Fragment() {
             requireActivity().finish()
         }
 
-
-
-
         return binding.root
     }
 
     private fun getNumberOfChildren(): String? {
         requireActivity().run {
             return intent.getStringExtra("children")
-
         }
     }
 
@@ -65,7 +60,6 @@ class NumberOfChildrenFragment : Fragment() {
                 )
             )
 
-
             val numberOfChildrenAdapter = NumberOfChildrenAdapter(childrenList)
             binding.numberOfChildrenRecyclerView.layoutManager =
                 LinearLayoutManager(requireContext())
@@ -78,6 +72,4 @@ class NumberOfChildrenFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-
 }

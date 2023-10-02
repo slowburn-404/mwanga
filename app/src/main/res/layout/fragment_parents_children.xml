@@ -38,40 +38,40 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvParentName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/laila_medium"
-                android:text="Lucky Wangari"
                 android:textColor="@color/main_color"
                 android:textSize="22sp" />
 
             <TextView
+                android:id="@+id/tvParentId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/ubuntu_regular"
-                android:text="ID: 1234567890"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/tvParentPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/ubuntu_regular"
-                android:text="2545451245"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/tvParentLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:fontFamily="@font/ubuntu_regular"
-                android:text="Kayole 1"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
