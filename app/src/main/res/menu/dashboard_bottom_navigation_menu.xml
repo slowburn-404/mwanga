@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/dashboard_home"
+        android:enabled="true"
+        android:icon="@drawable/bottom_nav_icon_selector"
+        android:title="@string/home" />
+    <item
+        android:id="@+id/dashboard_programs_list"
+        android:enabled="true"
+        android:icon="@drawable/programs_selector"
+        android:title="@string/programs_list" />
+    <item
+        android:id="@+id/registrationFragment"
+        android:enabled="true"
+        android:icon="@drawable/registration_selector"
+        android:title="@string/registration" />
+    <item
+      android:id="@+id/trackingFragment"
+      android:enabled="true"
+      android:icon="@drawable/tracking_selector"
+      android:title="@string/tracking"/>
+
+
+</menu>

@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name" translatable="false">MWANGA</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="firstonboardingpagedescription" translatable="false">Early detection for healthy children!</string>
+    <string name="secondonboardingpagedescription" translatable="false">Let us reduce rickets by promoting a healthy diet!</string>
+    <string name="skip" translatable="false">Skip</string>
+    <string name="name_hint" translatable="false">Enter your name</string>
+    <string name="enter_your_password" translatable="false">Enter your password</string>
+    <string name="enter_your_phone_number" translatable="false">Enter your phone number</string>
+    <string name="home" translatable="false">Home</string>
+    <string name="programs_list" translatable="false">Programs List</string>
+    <string name="registration" translatable="false">Registration</string>
+    <string name="tracking" translatable="false">Tracking</string>
+    <string name="profile" translatable="false">Profile</string>
+    <string name="recent_registrations" translatable="false">Recent Registrations</string>
+    <string name="view_more" translatable="false">View more</string>
+    <string name="children_in_the_program" translatable="false">Children in the Program</string>
+    <string name="name" translatable="false">Name</string>
+    <string name="date" translatable="false">Date</string>
+    <string name="time" translatable="false">Time</string>
+    <string name="add_child" translatable="false">Add child</string>
+    <string name="_2_hours_ago" translatable="false">2 hours ago</string>
+    <string name="_1_1_2023" translatable="false">1/1/2023</string>
+    <string name="grace_wambui" translatable="false">Grace Wambui</string>
+    <string name="childs_name" translatable="false">Child\'s name:</string>
+    <string name="date_of_birth" translatable="false">Date of birth</string>
+    <string name="sex" translatable="false">Sex</string>
+    <string name="delayed_milestones" translatable="false">Delayed Milestones</string>
+    <string name="submit" translatable="false">Submit</string>
+    <string name="enter_parent_id" translatable="false">Enter Parent ID</string>
+    <string name="details" translatable="false">Details</string>
+    <string name="dob" translatable="false">DOB:</string>
+    <string name="parents_name" translatable="false">Parent\'s name:</string>
+    <string name="parents_name2" translatable="false">Parent\'s name</string>
+    <string name="is_eligible" translatable="false">Is eligible:</string>
+    <string name="details_sex" translatable="false">Sex:</string>
+    <string name="submission_completed" translatable="false">Submission completed!</string>
+    <string name="success" translatable="false">Success!</string>
+    <string name="next" translatable="false">Next</string>
+    <string name="number_of_children" translatable="false">Number of Children</string>
+    <string name="parents_id" translatable="false">Parent\'s ID</string>
+    <string name="back" translatable="false">Back</string>
+    <string name="delayed_milestones_2" translatable="false">Delayed Milestones:</string>
+    <string name="sex2" translatable="false">Sex:</string>
+    <string name="name_2" translatable="false">Name:</string>
+    <string name="search" translatable="false">Search</string>
+    <string name="self_care_activities" translatable="false">Self Care Activities</string>
+    <string name="activity_of_daily_living" translatable="false">Activity of Daily Living</string>
+    <string name="moving_ability" translatable="false">Moving Ability</string>
+    <string name="track" translatable="false">Track</string>
+    <string-array name="milestones_array">
+        <item>Child cannot sit</item>
+        <item>Child cannot move the head</item>
+        <item>Child cannot walk</item>
+        <item>Child cannot stand</item>
+        <item>Lay on the stomach</item>
+    </string-array>
+
+</resources>

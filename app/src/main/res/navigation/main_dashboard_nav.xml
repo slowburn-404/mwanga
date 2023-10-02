@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_dashboard_nav"
+    app:startDestination="@id/dashboard_home">
+
+    <fragment
+        android:id="@+id/dashboard_home"
+        android:name="com.qemer.mwanga.dashboard.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_programsListFragment"
+            app:destination="@id/dashboard_programs_list"
+            app:popUpTo="@id/dashboard_home"/>
+    </fragment>
+    <fragment
+        android:id="@+id/dashboard_programs_list"
+        android:name="com.qemer.mwanga.dashboard.programs.ProgramsListFragment"
+        android:label="fragment_programs_list"
+        tools:layout="@layout/fragment_programs_list" >
+        <action
+            android:id="@+id/action_dashboard_programs_list_to_registrationFragment"
+            app:destination="@id/registrationFragment"
+            app:popUpTo="@id/dashboard_programs_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.qemer.mwanga.dashboard.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_trackingFragment2"
+            app:destination="@id/trackingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/trackingFragment"
+        android:name="com.qemer.mwanga.dashboard.tracking.TrackingFragment"
+        android:label="fragment_tracking"
+        tools:layout="@layout/fragment_tracking" />
+</navigation>

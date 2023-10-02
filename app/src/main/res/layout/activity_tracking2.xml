@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dashboard.tracking.TrackingActivity1">
+
+    <TextView
+        android:id="@+id/tvSelfCare3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activity of Daily Living"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <ImageView
+        android:id="@+id/ivSelfcare"
+        android:layout_width="338dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSelfCare3"
+        app:srcCompat="@drawable/card_border" />
+
+    <TextView
+        android:id="@+id/tvGrooming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Taking care of household"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/ivSelfcare"
+        app:layout_constraintStart_toEndOf="@+id/ivMove1"
+        app:layout_constraintTop_toTopOf="@+id/ivSelfcare" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/ivSelfcare"
+        app:layout_constraintEnd_toEndOf="@+id/ivSelfcare"
+        app:layout_constraintStart_toEndOf="@+id/ivMove1"
+        app:layout_constraintTop_toBottomOf="@+id/tvGrooming">
+
+        <TextView
+            android:id="@+id/tvOne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvTwo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="3"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivSelfcare"
+            app:layout_constraintEnd_toEndOf="@+id/ivSelfcare" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivToilet"
+        android:layout_width="338dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSelfcare"
+        app:srcCompat="@drawable/card_border" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cooking"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivToilet"
+        app:layout_constraintStart_toEndOf="@+id/ivMove2"
+        app:layout_constraintTop_toTopOf="@+id/ivToilet" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/ivToilet"
+        app:layout_constraintEnd_toEndOf="@+id/ivToilet"
+        app:layout_constraintStart_toEndOf="@+id/ivMove2"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <TextView
+            android:id="@+id/tvOne1_cooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvTwo_cooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvThree1_cooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="3"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFour_cooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFive1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivSelfcare"
+            app:layout_constraintEnd_toEndOf="@+id/ivSelfcare" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivCloth"
+        android:layout_width="338dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivToilet"
+        app:srcCompat="@drawable/card_border" />
+
+
+    <TextView
+        android:id="@+id/tvCloth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Washing clothes/dishes"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/ivCloth"
+        app:layout_constraintStart_toEndOf="@+id/ivMove3"
+        app:layout_constraintTop_toTopOf="@+id/ivCloth" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/ivCloth"
+        app:layout_constraintEnd_toEndOf="@+id/ivCloth"
+        app:layout_constraintStart_toEndOf="@+id/ivMove3"
+        app:layout_constraintTop_toBottomOf="@+id/tvCloth">
+
+        <TextView
+            android:id="@+id/tvOne_washing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvTwo_washing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvThree_washing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="3"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFour_washing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFive_washing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivSelfcare"
+            app:layout_constraintEnd_toEndOf="@+id/ivSelfcare" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivEat"
+        android:layout_width="338dp"
+        android:layout_height="101dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCloth"
+        app:srcCompat="@drawable/card_border" />
+
+    <TextView
+        android:id="@+id/tvEat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Playing at home/around"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/ivEat"
+        app:layout_constraintStart_toEndOf="@+id/ivMove4"
+        app:layout_constraintTop_toTopOf="@+id/ivEat" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/ivEat"
+        app:layout_constraintStart_toEndOf="@+id/ivMove4"
+        app:layout_constraintTop_toBottomOf="@+id/tvEat">
+
+        <TextView
+            android:id="@+id/tvOne_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="1"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvTwo_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="2"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvThree_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="3"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFour_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="4"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvFive_playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/circle_background_light"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivSelfcare"
+            app:layout_constraintEnd_toEndOf="@+id/ivSelfcare" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:padding="8dp"
+        android:background="@drawable/card_border_light"
+        android:text="SC + DL = "
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivEat" />
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#D9D9D9"
+        android:text="Back"
+        android:textColor="#FF5722"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/bntNext"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="#FD620B"
+        android:text="Next"
+        android:textColorHighlight="#FD620B"
+        android:textColorLink="#FD620B"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
+        app:layout_constraintStart_toEndOf="@+id/btnBack" />
+
+    <ImageView
+        android:id="@+id/ivMove1"
+        android:layout_width="70dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="256dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivSelfcare"
+        app:layout_constraintTop_toTopOf="@+id/ivSelfcare"
+        app:srcCompat="@drawable/home_icon" />
+
+    <ImageView
+        android:id="@+id/ivMove2"
+        android:layout_width="70dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="256dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivToilet"
+        app:layout_constraintTop_toTopOf="@+id/ivToilet"
+        app:srcCompat="@drawable/outline_cook" />
+
+    <ImageView
+        android:id="@+id/ivMove3"
+        android:layout_width="70dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="256dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivCloth"
+        app:layout_constraintTop_toTopOf="@+id/ivCloth"
+        app:srcCompat="@drawable/tabler_wash" />
+
+    <ImageView
+        android:id="@+id/ivMove4"
+        android:layout_width="70dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="256dp"
+        app:layout_constraintEnd_toEndOf="@+id/ivEat"
+        app:layout_constraintTop_toTopOf="@+id/ivEat"
+        app:srcCompat="@drawable/person_playing_handball" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:text="Tracking"
+        android:textColor="#FD620B"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

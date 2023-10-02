@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/add_child_nav"
+    app:startDestination="@id/detailsFragment">
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.qemer.mwanga.dashboard.addchild.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_addNewChildFragment"
+            app:destination="@id/addNewChildFragment"
+            app:popUpTo="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewChildFragment"
+        android:name="com.qemer.mwanga.dashboard.addchild.AddNewChildFragment"
+        android:label="fragment_add_new_child"
+        tools:layout="@layout/fragment_add_new_child" />
+</navigation>
