@@ -7,10 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.qemer.mwanga.api.ApiLoginClient
+import com.qemer.mwanga.dashboard.SuccessModalFragment
 import com.qemer.mwanga.databinding.FragmentParentsChildrenBinding
 import com.qemer.mwanga.models.ChildCreateRequest
 import com.qemer.mwanga.models.ChildCreateResponse
@@ -80,7 +82,7 @@ class ParentsChildrenFragment : Fragment() {
                 override fun onResponse(call: Call<GuardianRegistrationResponse>, response: Response<GuardianRegistrationResponse>) {
                     if (response.isSuccessful) {
                         progressDialog.dismiss()
-//                        Snackbar.make(it, "Login Successful", Snackbar.LENGTH_SHORT).show()
+//                        Snackbar.make(it, " Successful", Snackbar.LENGTH_SHORT).show()
                         Log.e("Gideon", "onSuccess: ${response.body()!!.id}")
                         createChild(response.body()!!.id)
                     }
@@ -121,6 +123,9 @@ class ParentsChildrenFragment : Fragment() {
 
             val receivedChildrenList = ArrayList<NumberOfChildrenModel>()
 
+            var successfulApiCalls = 0 // Initialize a counter for successful API calls
+            val totalApiCalls = entries.size // Total number of API calls to be made
+
             for (childModel in receivedChildrenList) {
                 val requestData = ChildCreateRequest(
                     childModel.childName,
@@ -130,7 +135,6 @@ class ParentsChildrenFragment : Fragment() {
                     id,
                 )
 
-
                 apiClient.getApiService(requireContext()).childRegistration(requestData)
                     .enqueue(object : Callback<ChildCreateResponse> {
                         override fun onResponse(
@@ -138,7 +142,12 @@ class ParentsChildrenFragment : Fragment() {
                             response: Response<ChildCreateResponse>
                         ) {
                             if (response.isSuccessful) {
-                                progressDialog.dismiss()
+                                successfulApiCalls++
+                                if (successfulApiCalls == totalApiCalls) {
+                                    // All API calls are successful, dismiss the progress dialog and show success message
+                                    progressDialog.dismiss()
+                                    showSuccessModal()
+                                }
                             }
                         }
 
@@ -147,8 +156,12 @@ class ParentsChildrenFragment : Fragment() {
                         }
                     })
             }
-            progressDialog.dismiss()
         }
+    }
+
+    private fun showSuccessModal() {
+        val successModal = SuccessModalFragment()
+        successModal.show(requireActivity().supportFragmentManager, SuccessModalFragment.TAG)
     }
 
     private fun getParentData(): ParentData? {

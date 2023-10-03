@@ -6,16 +6,18 @@ import com.qemer.mwanga.models.GetGuardiansResponse
 import com.qemer.mwanga.models.GuardianRegistrationRequest
 import com.qemer.mwanga.models.GuardianRegistrationResponse
 import com.qemer.mwanga.models.LoginRequest
+import com.qemer.mwanga.models.LoginResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiLoginInterface {
     @POST("api/healthworker/login")
-    suspend fun <LogInResponse : Any?> login(@Body request: LoginRequest): Response<LogInResponse>
+    fun login(@Body userLogin: LoginRequest): Call<LoginResponse>
 
     @POST("api/guardians/")
     fun guardianRegistration(@Body guardianRegistrationRequest: GuardianRegistrationRequest): Call<GuardianRegistrationResponse>

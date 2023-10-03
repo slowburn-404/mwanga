@@ -33,8 +33,11 @@ class ApiLoginClient {
         if (!::apiService.isInitialized) {
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://qemer-backend-764e0de661a5.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create(gson)).client(
-                    OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(
+                    OkHttpClient.Builder()
+                        .addInterceptor(loggingInterceptor)
+                        .build()
                 ).build()
 
             apiService = retrofit.create(ApiLoginInterface::class.java)
