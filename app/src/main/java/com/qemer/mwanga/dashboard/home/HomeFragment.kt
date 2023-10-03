@@ -1,9 +1,11 @@
 package com.qemer.mwanga.dashboard.home
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +15,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.qemer.mwanga.Profile
 import com.qemer.mwanga.R
+import com.qemer.mwanga.api.ApiLoginClient
 import com.qemer.mwanga.databinding.FragmentHomeBinding
+import com.qemer.mwanga.models.GetGuardiansResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeFragment : Fragment(), HomeOnItemClickListener {
@@ -21,7 +28,8 @@ class HomeFragment : Fragment(), HomeOnItemClickListener {
     private val binding get() = _binding!!
 
     private lateinit var recentRegistrationsAdapter: RecentRegistrationsAdapter
-    private var recentRegistrationsList = ArrayList<RecentRegistrations>()
+    private var recentRegistrationsList = ArrayList<GetGuardiansResponse>()
+    private lateinit var apiClient: ApiLoginClient
 
 
     override fun onCreateView(
@@ -52,13 +60,36 @@ class HomeFragment : Fragment(), HomeOnItemClickListener {
     }
 
     private fun addSampleData() {
-        for (i in 1..4) {
-            recentRegistrationsList.add(RecentRegistrations("Grace Wambui", "1/1/23", "2 hours"))
-            recentRegistrationsAdapter = RecentRegistrationsAdapter(recentRegistrationsList, this)
-            binding.mainDashboardRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-            binding.mainDashboardRecyclerview.setHasFixedSize(true)
-            binding.mainDashboardRecyclerview.adapter = recentRegistrationsAdapter
-        }
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setCancelable(false) // set cancelable to false
+        progressDialog.setMessage("fetching data..") // set message
+        progressDialog.show()
+        apiClient.getApiService(requireContext()).getGuardians().enqueue(object : Callback<ArrayList<GetGuardiansResponse>> {
+            override fun onResponse(call: Call<ArrayList<GetGuardiansResponse>>, response: Response<ArrayList<GetGuardiansResponse>>) {
+                if (response.isSuccessful) {
+                    val responseData = response.body()
+                    if (responseData != null) {
+                        // Add the response data to your list
+                        recentRegistrationsList.addAll(responseData)
+                        // Notify the adapter of the data change
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<GetGuardiansResponse>>, t: Throwable) {
+                // Handle API call failure here
+                Log.e("Gideon", "onFailure: ${t.message}")
+            }
+        })
+
+
+//        for (i in 1..4) {
+//            recentRegistrationsList.add(RecentRegistrations("Grace Wambui", "1/1/23", "2 hours"))
+//            recentRegistrationsAdapter = RecentRegistrationsAdapter(recentRegistrationsList, this)
+//            binding.mainDashboardRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+//            binding.mainDashboardRecyclerview.setHasFixedSize(true)
+//            binding.mainDashboardRecyclerview.adapter = recentRegistrationsAdapter
+//        }
     }
 
     private fun underLineText() {

@@ -8,4 +8,5 @@ data class ParentData(
     val parentId: String,
     val parentPhoneNo: String,
     val geolocation: String,
+    val totalChildren: String
 ) : Serializable

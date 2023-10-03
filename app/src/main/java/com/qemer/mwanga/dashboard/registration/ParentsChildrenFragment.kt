@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import com.qemer.mwanga.R
 import com.qemer.mwanga.api.ApiLoginClient
 import com.qemer.mwanga.databinding.FragmentParentsChildrenBinding
+import com.qemer.mwanga.models.ChildCreateRequest
+import com.qemer.mwanga.models.ChildCreateResponse
 import com.qemer.mwanga.models.GuardianRegistrationRequest
 import com.qemer.mwanga.models.GuardianRegistrationResponse
 import com.qemer.mwanga.models.ParentData
@@ -32,6 +31,7 @@ class ParentsChildrenFragment : Fragment() {
     var parentId:String = ""
     var parentPhoneNo:String = ""
     var geolocation:String = ""
+    var totalChildren:String = ""
     private lateinit var apiClient: ApiLoginClient
 
     override fun onCreateView(
@@ -50,6 +50,7 @@ class ParentsChildrenFragment : Fragment() {
             parentId = parentData.parentId
             parentPhoneNo = parentData.parentPhoneNo
             geolocation = parentData.geolocation
+            totalChildren = parentData.totalChildren
 
             binding.tvParentName.text= parentName
             binding.tvParentId.text= parentId
@@ -79,8 +80,9 @@ class ParentsChildrenFragment : Fragment() {
                 override fun onResponse(call: Call<GuardianRegistrationResponse>, response: Response<GuardianRegistrationResponse>) {
                     if (response.isSuccessful) {
                         progressDialog.dismiss()
-                        Snackbar.make(it, "Login Successful", Snackbar.LENGTH_SHORT).show()
-                        Log.e("Gideon", "onSuccess: ${response.body()}")
+//                        Snackbar.make(it, "Login Successful", Snackbar.LENGTH_SHORT).show()
+                        Log.e("Gideon", "onSuccess: ${response.body()!!.id}")
+                        createChild(response.body()!!.id)
                     }
                 }
 
@@ -98,15 +100,67 @@ class ParentsChildrenFragment : Fragment() {
         return binding.root
     }
 
+    private fun createChild(id: String) {
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setCancelable(false)
+        progressDialog.setMessage("submitting..")
+        progressDialog.show()
+        val receivedChildrenListString = arguments?.getString("childrenListString")
+
+        if (receivedChildrenListString != null) {
+
+            val cleanedString = if (receivedChildrenListString.endsWith("]")) {
+                receivedChildrenListString.substring(0, receivedChildrenListString.length - 1)
+            } else {
+                receivedChildrenListString
+            }
+
+            val formattedString = cleanedString.trim('[', ']')
+
+            val entries = formattedString.split("), ")
+
+            val receivedChildrenList = ArrayList<NumberOfChildrenModel>()
+
+            for (childModel in receivedChildrenList) {
+                val requestData = ChildCreateRequest(
+                    childModel.childName,
+                    childModel.DOB,
+                    childModel.gender,
+                    childModel.delayedMilestones,
+                    id,
+                )
+
+
+                apiClient.getApiService(requireContext()).childRegistration(requestData)
+                    .enqueue(object : Callback<ChildCreateResponse> {
+                        override fun onResponse(
+                            call: Call<ChildCreateResponse>,
+                            response: Response<ChildCreateResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                progressDialog.dismiss()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<ChildCreateResponse>, t: Throwable) {
+                            Log.e("Gideon", "onFailure: ${t.message}")
+                        }
+                    })
+            }
+            progressDialog.dismiss()
+        }
+    }
+
     private fun getParentData(): ParentData? {
         requireActivity().run {
             val parentName = intent.getStringExtra("parentName")
             val parentId = intent.getStringExtra("parentId")
             val parentPhoneNo = intent.getStringExtra("parentPhoneNo")
             val geolocation = intent.getStringExtra("geolocation")
+            val totalChildren = intent.getStringExtra("children")
 
-            if (parentName != null && parentId != null && parentPhoneNo != null && geolocation != null) {
-                return ParentData(parentName, parentId, parentPhoneNo, geolocation)
+            if (parentName != null && parentId != null && parentPhoneNo != null && geolocation != null && totalChildren != null) {
+                return ParentData(parentName, parentId, parentPhoneNo, geolocation, totalChildren)
             }
             return null
         }
@@ -114,17 +168,9 @@ class ParentsChildrenFragment : Fragment() {
 
 
     private fun addSampleData() {
-//        for (i in 1..2) {
-//            parentsChildrenList.add(ParentsChildrenModel("$i","Bruce Wayne", "1/1/23", "Male", "0-3 months"))
-//            parentsChildrenAdapter = ParentsChildrenAdapter(parentsChildrenList)
-//            binding.parentsChildrenRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-//            binding.parentsChildrenRecyclerview.setHasFixedSize(true)
-//            binding.parentsChildrenRecyclerview.adapter = parentsChildrenAdapter
-//        }
         val receivedChildrenListString = arguments?.getString("childrenListString")
 
         if (receivedChildrenListString != null) {
-            Log.d("childrenListString", receivedChildrenListString)
 
             // Remove the extra bracket at the end of the string
             val cleanedString = if (receivedChildrenListString.endsWith("]")) {
@@ -151,7 +197,6 @@ class ParentsChildrenFragment : Fragment() {
                 receivedChildrenList.add(numberOfChildrenModel)
             }
 
-            Log.d("receivedChildrenList", receivedChildrenList.toString())
             val adapter = ParentsChildrenAdapter(receivedChildrenList)
 
             binding.parentsChildrenRecyclerview.layoutManager = LinearLayoutManager(requireContext())
