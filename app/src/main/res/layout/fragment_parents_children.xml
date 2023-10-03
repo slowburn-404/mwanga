@@ -115,7 +115,7 @@
                 android:background="@drawable/rectangle_bg"
                 android:fontFamily="@font/ubuntu_regular"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="@string/next"
+                android:text="@string/submit"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 

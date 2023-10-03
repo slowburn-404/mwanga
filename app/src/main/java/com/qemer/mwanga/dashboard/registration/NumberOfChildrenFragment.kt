@@ -1,8 +1,10 @@
 package com.qemer.mwanga.dashboard.registration
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.SpannableStringBuilder
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,8 +19,8 @@ import com.qemer.mwanga.databinding.FragmentNumberOfChildrenBinding
 class NumberOfChildrenFragment : Fragment() {
     private var _binding: FragmentNumberOfChildrenBinding? = null
     private val binding get() = _binding!!
-
     private var childrenList = ArrayList<NumberOfChildrenModel>()
+    private var selectedGender: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -29,7 +31,10 @@ class NumberOfChildrenFragment : Fragment() {
         addForms()
 
         binding.btNext.setOnClickListener {
-            findNavController().navigate(R.id.action_numberOfChildrenFragment_to_parentsChildrenFragment)
+            val bundle = Bundle()
+            bundle.putString("childrenListString", ArrayList(childrenList).toString())
+            Log.d("A", ArrayList(childrenList).toString())
+            findNavController().navigate(R.id.action_numberOfChildrenFragment_to_parentsChildrenFragment, bundle)
         }
         binding.numberOfChildrenTopAppBar.setNavigationOnClickListener {
             requireActivity().finish()
@@ -53,20 +58,23 @@ class NumberOfChildrenFragment : Fragment() {
             childrenList.add(
                 NumberOfChildrenModel(
                     "Child $i",
-                    SpannableStringBuilder("Child's Name"),
-                    SpannableStringBuilder("DOB"),
-                    true,
-                    SpannableStringBuilder("Delayed Milestones")
+                    "",
+                    "",
+                    selectedGender ?: "",
+                    ""
                 )
             )
-
-            val numberOfChildrenAdapter = NumberOfChildrenAdapter(childrenList)
-            binding.numberOfChildrenRecyclerView.layoutManager =
-                LinearLayoutManager(requireContext())
-            binding.numberOfChildrenRecyclerView.setHasFixedSize(true)
-            binding.numberOfChildrenRecyclerView.adapter = numberOfChildrenAdapter
         }
+
+        val numberOfChildrenAdapter = NumberOfChildrenAdapter(childrenList) { position, gender ->
+            childrenList[position].gender = gender
+        }
+
+        binding.numberOfChildrenRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.numberOfChildrenRecyclerView.setHasFixedSize(true)
+        binding.numberOfChildrenRecyclerView.adapter = numberOfChildrenAdapter
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -8,15 +8,15 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-class UserRepository {
-    val apiClient = ApiLoginClient.buildClient(ApiLoginInterface::class.java)
-
-    //switch the content to the io
-
-    suspend fun login(loginRequest: LoginRequest):
-            Response<LoginResponse>{
-        return withContext(Dispatchers.IO){
-            apiClient.login(loginRequest)
-        }
-    }
-}
+//class UserRepository {
+//    val apiClient = ApiLoginClient.buildClient(ApiLoginInterface::class.java)
+//
+//    //switch the content to the io
+//
+//    suspend fun login(loginRequest: LoginRequest):
+//            Response<LoginResponse>{
+//        return withContext(Dispatchers.IO){
+//            apiClient.login(loginRequest)
+//        }
+//    }
+//}
