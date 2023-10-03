@@ -33,44 +33,43 @@ class LogInActivity : AppCompatActivity() {
         apiClient = ApiLoginClient()
 
         binding.btLogin.setOnClickListener {
-            val intent = Intent(this@LogInActivity, MainDashboardActivity::class.java)
-            startActivity(intent)
-//            if (TextUtils.isEmpty(binding.tilName.text.toString().trim())) {
-//                binding.tilName.error = "Phone number is required"
-//            } else if (TextUtils.isEmpty(binding.tilPassword.text.toString().trim())) {
-//                binding.tilPassword.error = "Password is required"
-//            } else {
-//                val progressDialog = ProgressDialog(this)
-//                progressDialog.setCancelable(false) // set cancelable to false
-//                progressDialog.setMessage("Logging in...") // set message
-//                progressDialog.show()
-//
-//                val loginInfo = LoginRequest(
-//                    binding.tilName.text.toString().trim(),
-//                    binding.tilPassword.text.toString().trim()
-//                )
-//                Log.d("info", loginInfo.toString())
-//                apiClient.getApiService(this).login(loginInfo).enqueue(object : Callback<LoginResponse> {
-//                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-//                        if (response.isSuccessful) {
-//                            progressDialog.dismiss()
-//                            Snackbar.make(it, "Login Successful", Snackbar.LENGTH_SHORT).show()
-//                            Log.e("Gideon", "onSuccess: ${response.body()}")
-//
-//                            val token = response.body()!!.token
-//
-//                            val intent = Intent(this@LogInActivity, MainDashboardActivity::class.java)
-//                            startActivity(intent)
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-//                        progressDialog.dismiss()
-//                        Snackbar.make(it, "${t.message}", Snackbar.LENGTH_SHORT).show()
-//                        Log.e("Gideon", "onFailure: ${t.message}")
-//                    }
-//                })
-//            }
+            if (TextUtils.isEmpty(binding.tilName.text.toString().trim())) {
+                binding.tilName.error = "Phone number is required"
+            } else if (TextUtils.isEmpty(binding.tilPassword.text.toString().trim())) {
+                binding.tilPassword.error = "Password is required"
+            } else {
+                val progressDialog = ProgressDialog(this)
+                progressDialog.setCancelable(false) // set cancelable to false
+                progressDialog.setMessage("Logging in...") // set message
+                progressDialog.show()
+
+                val loginInfo = LoginRequest(
+                    binding.tilName.text.toString().trim(),
+                    binding.tilPassword.text.toString().trim()
+                )
+                Log.d("info", loginInfo.toString())
+                apiClient.getApiService(this).login(loginInfo).enqueue(object : Callback<LoginResponse> {
+                    override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                        if (response.isSuccessful) {
+                            progressDialog.dismiss()
+                            Snackbar.make(it, response.body()!!.message, Snackbar.LENGTH_SHORT).show()
+                            Log.e("Gideon", "onSuccess: ${response.body()}")
+
+                            val intent = Intent(this@LogInActivity, MainDashboardActivity::class.java)
+                            startActivity(intent)
+                        } else{
+                            progressDialog.dismiss()
+                            Snackbar.make(it, response.body()!!.message, Snackbar.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        progressDialog.dismiss()
+                        Snackbar.make(it, "${t.message}", Snackbar.LENGTH_SHORT).show()
+                        Log.e("Gideon", "onFailure: ${t.message}")
+                    }
+                })
+            }
         }
     }
 

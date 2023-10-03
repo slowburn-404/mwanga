@@ -1,6 +1,7 @@
 package com.qemer.mwanga.dashboard.registration
 
 import android.app.ProgressDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.qemer.mwanga.api.ApiLoginClient
+import com.qemer.mwanga.dashboard.MainDashboardActivity
 import com.qemer.mwanga.dashboard.SuccessModalFragment
 import com.qemer.mwanga.databinding.FragmentParentsChildrenBinding
 import com.qemer.mwanga.models.ChildCreateRequest
@@ -82,9 +84,12 @@ class ParentsChildrenFragment : Fragment() {
                 override fun onResponse(call: Call<GuardianRegistrationResponse>, response: Response<GuardianRegistrationResponse>) {
                     if (response.isSuccessful) {
                         progressDialog.dismiss()
-//                        Snackbar.make(it, " Successful", Snackbar.LENGTH_SHORT).show()
                         Log.e("Gideon", "onSuccess: ${response.body()!!.id}")
-                        createChild(response.body()!!.id)
+                        showSuccessModal()
+
+                        val intent = Intent(requireContext(), MainDashboardActivity::class.java)
+                        startActivity(intent)
+//                        createChild(response.body()!!.id)
                     }
                 }
 
