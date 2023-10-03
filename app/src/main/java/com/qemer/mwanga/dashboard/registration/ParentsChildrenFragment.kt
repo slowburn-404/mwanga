@@ -71,7 +71,7 @@ class ParentsChildrenFragment : Fragment() {
                 parentName,
                 parentId,
                 parentPhoneNo,
-                "2",
+                totalChildren,
                 "yes",
                 geolocation
             )
