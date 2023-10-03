@@ -53,16 +53,14 @@ class LogInActivity : AppCompatActivity() {
 //                        if (response.isSuccessful) {
 //                            progressDialog.dismiss()
 //                            Snackbar.make(it, response.body()!!.message, Snackbar.LENGTH_SHORT).show()
-//                            Log.e("Gideon", "onSuccess: ${response.body()}")
 
                             val intent = Intent(this@LogInActivity, MainDashboardActivity::class.java)
                             startActivity(intent)
-//                        } else {
+//                        } else{
 //                            progressDialog.dismiss()
 //                            Snackbar.make(it, response.body()!!.message, Snackbar.LENGTH_SHORT).show()
 //                        }
 //                    }
-
 //                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
 //                        progressDialog.dismiss()
 //                        Snackbar.make(it, "${t.message}", Snackbar.LENGTH_SHORT).show()

@@ -36,9 +36,9 @@ class AddNewChildFragment : Fragment() {
 
         }
 
-        binding.childDateOfBirth.setEndIconOnClickListener {
-            showDatePickerDialog()
-        }
+//        binding.childDateOfBirth.setEndIconOnClickListener {
+//            showDatePickerDialog()
+//        }
         binding.cbMale.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) binding.cbFemale.isChecked = false
         }

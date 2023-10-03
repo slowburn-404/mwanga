@@ -1,14 +1,19 @@
 package com.qemer.mwanga.dashboard.programs
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.dashboard.home.RecentRegistrations
 import com.qemer.mwanga.databinding.ItemRegistrationBinding
 import com.qemer.mwanga.models.GetChildrenResponse
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 class ProgramsListAdapter(
     private var programsList: ArrayList<GetChildrenResponse>, val context: Context
@@ -16,14 +21,27 @@ class ProgramsListAdapter(
 
     inner class ProgramsListViewHolder(private val binding: ItemRegistrationBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(recentRegistrations: GetChildrenResponse) {
             binding.name.text = recentRegistrations.childName
-            binding.date.text = recentRegistrations.createdAt
+
+            try {
+                val instant = Instant.parse(recentRegistrations.createdAt)
+                val localDateTime = instant.atZone(ZoneId.of("UTC")).toLocalDateTime()
+
+                val outputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+
+                val formattedDate = localDateTime.format(outputFormat)
+                binding.date.text = formattedDate
+            } catch (e: Exception) {
+                e.printStackTrace()
+                binding.date.text = "Invalid Date"
+            }
 //            binding.time.text = recentRegistrations.timeSpent
         }
     }
-    fun setFilteredChildrenList(filteredList: ArrayList<RecentRegistrations>) {
-//        this.programsList = filteredList
+    fun setFilteredChildrenList(filteredList: ArrayList<GetChildrenResponse>) {
+        this.programsList = filteredList
         notifyDataSetChanged()
     }
 
@@ -41,7 +59,7 @@ class ProgramsListAdapter(
         val item = programsList[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
-//            itemClickListener.onItemClick(item)
+
         }
 
         //set alternating background color

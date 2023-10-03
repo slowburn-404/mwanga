@@ -1,24 +1,42 @@
 package com.qemer.mwanga.dashboard.home
 
 import android.content.Context
+import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ItemRegistrationBinding
 import com.qemer.mwanga.models.GetGuardiansResponse
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 import java.util.TimeZone
 
-class RecentRegistrationsAdapter(
-    private var recentRegistrationsList: ArrayList<GetGuardiansResponse>, val context: Context
+class RecentRegistrationsAdapter(private var recentRegistrationsList: ArrayList<GetGuardiansResponse>, val context: Context
 ) : RecyclerView.Adapter<RecentRegistrationsAdapter.RecentRegistrationsViewHolder>() {
     inner class RecentRegistrationsViewHolder(private val binding: ItemRegistrationBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.O)
         fun bind(recentRegistrations: GetGuardiansResponse) {
             binding.name.text = recentRegistrations.parentName
-            binding.date.text = recentRegistrations.createdAt
+            try {
+                val instant = Instant.parse(recentRegistrations.createdAt)
+                val localDateTime = instant.atZone(ZoneId.of("UTC")).toLocalDateTime()
+
+                val outputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+
+                val formattedDate = localDateTime.format(outputFormat)
+                binding.date.text = formattedDate
+            } catch (e: Exception) {
+                e.printStackTrace()
+                binding.date.text = "Invalid Date"
+            }
         }
     }
 

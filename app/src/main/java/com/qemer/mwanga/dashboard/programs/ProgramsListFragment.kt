@@ -24,12 +24,12 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.Locale
 
-class ProgramsListFragment : Fragment(), OnItemClickListener {
+class ProgramsListFragment : Fragment(){
     private var _binding: FragmentProgramsListBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var programsListAdapter: ProgramsListAdapter
-    private var childrenInProgramList = ArrayList<RecentRegistrations>()
+    private var childrenInProgramList = ArrayList<GetChildrenResponse>()
     private lateinit var apiClient: ApiLoginClient
 
     inner class ProgramsListQueryTextListener : SearchView.OnQueryTextListener {
@@ -65,8 +65,6 @@ class ProgramsListFragment : Fragment(), OnItemClickListener {
 
         searchView.setOnQueryTextListener(queryTextListener)
 
-
-
         childrenInProgramList.clear()
         addSampleData()
 
@@ -75,30 +73,9 @@ class ProgramsListFragment : Fragment(), OnItemClickListener {
     }
 
     private fun addSampleData() {
-
-//        for (i in 1..3) {
-//            childrenInProgramList.add(RecentRegistrations("Grace Wambui", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Bruce Wayne", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Damian Wayne", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Grace Wambui", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Bruce Wayne", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Damian Wayne", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Angela Adisa", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Rediet Hadera", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Gloria Lado", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Apiu Mary", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Joy Mitingi", "1/1/23", "2 hours ago"))
-//            childrenInProgramList.add(RecentRegistrations("Gubo Diba", "1/1/23", "2 hours ago"))
-//        }
-
-//        programsListAdapter = ProgramsListAdapter(childrenInProgramList, this)
-//        binding.programsListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        binding.programsListRecyclerView.setHasFixedSize(true)
-//        binding.programsListRecyclerView.adapter = programsListAdapter
-
         val progressDialog = ProgressDialog(requireContext())
-        progressDialog.setCancelable(false) // set cancelable to false
-        progressDialog.setMessage("Fetching...") // set message
+        progressDialog.setCancelable(false)
+        progressDialog.setMessage("Fetching...")
         progressDialog.show()
 
         apiClient.getApiService(requireContext()).getChildren().enqueue(object :
@@ -131,9 +108,9 @@ class ProgramsListFragment : Fragment(), OnItemClickListener {
     }
 
     private fun filterChildrenInProgramList(text: String) {
-        val filteredChildrenInProgramList = ArrayList<RecentRegistrations>()
+        val filteredChildrenInProgramList = ArrayList<GetChildrenResponse>()
         for (child in childrenInProgramList) {
-            val childInProgramsListName = child.name
+            val childInProgramsListName = child.childName
             if (childInProgramsListName.lowercase().contains(text.lowercase(Locale.getDefault()))) {
                 filteredChildrenInProgramList.add(child)
             }
@@ -146,11 +123,11 @@ class ProgramsListFragment : Fragment(), OnItemClickListener {
 
 
 
-    override fun onItemClick(item: RecentRegistrations) {
-        requireActivity().run {
-            startActivity(Intent(this, AddChildActivity::class.java))
-        }
-    }
+//    override fun onItemClick(item: GetChildrenResponse) {
+//        requireActivity().run {
+//            startActivity(Intent(this, AddChildActivity::class.java))
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

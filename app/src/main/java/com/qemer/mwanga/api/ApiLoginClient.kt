@@ -7,19 +7,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-//object ApiLoginClient {
-//    val retrofit = Retrofit.Builder()
-//            .baseUrl("https://qemer-backend-764e0de661a5.herokuapp.com/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//        fun <T> buildClient(apiInterface:Class<T>):T{
-//            return retrofit.create(apiInterface)
-//        }
-//
-//    fun createApiService(): ApiLoginInterface{
-//        return buildClient(ApiLoginInterface::class.java)
-//    }
-//}
 class ApiLoginClient {
     private lateinit var apiService: ApiLoginInterface
 
@@ -33,11 +20,8 @@ class ApiLoginClient {
         if (!::apiService.isInitialized) {
             val retrofit = Retrofit.Builder()
                 .baseUrl("https://qemer-backend-764e0de661a5.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .client(
-                    OkHttpClient.Builder()
-                        .addInterceptor(loggingInterceptor)
-                        .build()
+                .addConverterFactory(GsonConverterFactory.create(gson)).client(
+                    OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
                 ).build()
 
             apiService = retrofit.create(ApiLoginInterface::class.java)
