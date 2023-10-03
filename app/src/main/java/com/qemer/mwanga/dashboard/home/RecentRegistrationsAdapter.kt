@@ -1,31 +1,29 @@
 package com.qemer.mwanga.dashboard.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ItemRegistrationBinding
+import com.qemer.mwanga.models.GetGuardiansResponse
+import java.text.SimpleDateFormat
+import java.util.TimeZone
 
 class RecentRegistrationsAdapter(
-    private var recentRegistrationsList: List<RecentRegistrations>,
-    private val itemClickListener: HomeFragment
+    private var recentRegistrationsList: ArrayList<GetGuardiansResponse>, val context: Context
 ) : RecyclerView.Adapter<RecentRegistrationsAdapter.RecentRegistrationsViewHolder>() {
-
     inner class RecentRegistrationsViewHolder(private val binding: ItemRegistrationBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(recentRegistrations: RecentRegistrations) {
-            binding.name.text = recentRegistrations.name
-            binding.date.text = recentRegistrations.date
-            binding.time.text = recentRegistrations.timeSpent
+        fun bind(recentRegistrations: GetGuardiansResponse) {
+            binding.name.text = recentRegistrations.parentName
+            binding.date.text = recentRegistrations.createdAt
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup, viewType: Int
-    ): RecentRegistrationsViewHolder {
-        val binding =
-            ItemRegistrationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentRegistrationsViewHolder {
+        val binding = ItemRegistrationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RecentRegistrationsViewHolder(binding)
     }
 
@@ -36,7 +34,7 @@ class RecentRegistrationsAdapter(
         holder.bind(item)
 
         holder.itemView.setOnClickListener {
-            itemClickListener.onItemClick(item)
+//            itemClickListener.onItemClick(item)
         }
         //set alternating background color
         if (position % 2 == 0) {

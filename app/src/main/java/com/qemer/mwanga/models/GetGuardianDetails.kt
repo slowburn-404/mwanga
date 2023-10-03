@@ -2,7 +2,7 @@ package com.qemer.mwanga.models
 
 import com.google.gson.annotations.SerializedName
 
-class GetGuardianDetails(
+data class GetGuardianDetails(
     @SerializedName("id") var id: String,
     @SerializedName("children") var children: ArrayList<Children> = arrayListOf(),
     @SerializedName("parent_name") var parentName: String,

@@ -18,7 +18,7 @@ class ProgramsListAdapter(
         fun bind(recentRegistrations: RecentRegistrations) {
             binding.name.text = recentRegistrations.name
             binding.date.text = recentRegistrations.date
-            binding.time.text = recentRegistrations.timeSpent
+//            binding.time.text = recentRegistrations.timeSpent
         }
     }
     fun setFilteredChildrenList(filteredList: ArrayList<RecentRegistrations>) {
