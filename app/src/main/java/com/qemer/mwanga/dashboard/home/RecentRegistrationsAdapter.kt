@@ -8,7 +8,7 @@ import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ItemRegistrationBinding
 
 class RecentRegistrationsAdapter(
-    private var recentRegistrationsList: ArrayList<RecentRegistrations>,
+    private var recentRegistrationsList: List<RecentRegistrations>,
     private val itemClickListener: HomeFragment
 ) : RecyclerView.Adapter<RecentRegistrationsAdapter.RecentRegistrationsViewHolder>() {
 
