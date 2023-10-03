@@ -34,7 +34,6 @@ class HomeFragment : Fragment(), HomeOnItemClickListener {
     private var recentRegistrationsList = ArrayList<RecentRegistrations>()
     private lateinit var apiClient: ApiLoginClient
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -64,13 +63,6 @@ class HomeFragment : Fragment(), HomeOnItemClickListener {
     }
 
     private fun addSampleData() {
-//        for (i in 1..4) {
-//            recentRegistrationsList.add(RecentRegistrations("Grace Wambui", "1/1/23", "2 hours"))
-//            recentRegistrationsAdapter = RecentRegistrationsAdapter(recentRegistrationsList, this)
-//            binding.mainDashboardRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-//            binding.mainDashboardRecyclerview.setHasFixedSize(true)
-//            binding.mainDashboardRecyclerview.adapter = recentRegistrationsAdapter
-//        }
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setCancelable(false) // set cancelable to false
         progressDialog.setMessage("Fetching...") // set message

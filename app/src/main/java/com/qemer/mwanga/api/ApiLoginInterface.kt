@@ -2,6 +2,7 @@ package com.qemer.mwanga.api
 
 import com.qemer.mwanga.models.ChildCreateRequest
 import com.qemer.mwanga.models.ChildCreateResponse
+import com.qemer.mwanga.models.GetChildrenResponse
 import com.qemer.mwanga.models.GetGuardianDetails
 import com.qemer.mwanga.models.GetGuardiansResponse
 import com.qemer.mwanga.models.GuardianRegistrationRequest
@@ -28,6 +29,9 @@ interface ApiLoginInterface {
 
     @GET("api/guardians/")
     fun getGuardians(): Call<ArrayList<GetGuardiansResponse>>
+
+    @GET("api/children/")
+    fun getChildren(): Call<ArrayList<GetChildrenResponse>>
 
     @GET("api/guardians/{id}")
     fun getGuardianDetails(@Path("id") id: String?): Call<GetGuardianDetails>
