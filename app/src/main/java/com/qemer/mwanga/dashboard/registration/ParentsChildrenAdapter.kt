@@ -9,17 +9,17 @@ import com.qemer.mwanga.databinding.ItemParentsChildrenBinding
 
 
 class ParentsChildrenAdapter(
-    private var parentsChildrenList: List<ParentsChildrenModel>
+    private var parentsChildrenList: ArrayList<NumberOfChildrenModel>
 ) : RecyclerView.Adapter<ParentsChildrenAdapter.ParentsChildrenViewHolder>() {
 
     inner class ParentsChildrenViewHolder(private val binding: ItemParentsChildrenBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(parentsChildren: ParentsChildrenModel) {
-            binding.childName.text = parentsChildren.name
+        fun bind(parentsChildren: NumberOfChildrenModel) {
+            binding.childName.text = parentsChildren.childName
             binding.childNumber.text = "Child: ${parentsChildren.childNumber}"
-            binding.childDateOfBirth.text = parentsChildren.dob
-            binding.childGender.text = parentsChildren.sex
-            binding.childDelayedMilestone.text = parentsChildren.delayedMilestone
+            binding.childDateOfBirth.text = parentsChildren.DOB
+            binding.childGender.text = parentsChildren.gender
+            binding.childDelayedMilestone.text = parentsChildren.delayedMilestones
         }
     }
 

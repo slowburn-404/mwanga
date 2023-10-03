@@ -23,12 +23,20 @@ class RegistrationFragment : Fragment() {
 
         binding.btSubmit.setOnClickListener {
             if (validateFields()) {
+                val parentName = binding.parentName.editText?.text?.trim().toString()
+                val parentId = binding.parentsId.editText?.text?.trim().toString()
+                val parentPhoneNo = binding.parentsPhoneNumber.editText?.text?.trim().toString()
+                val geolocation = binding.parentsGeoLocation.editText?.text?.trim().toString()
                 val numberOfChildren = binding.numberOfChildren.editText?.text?.trim().toString()
                 requireActivity().run {
+
                     val intent = Intent(this, RegisterParentActivity::class.java)
+                    intent.putExtra("parentName", parentName)
+                    intent.putExtra("parentId", parentId)
+                    intent.putExtra("parentPhoneNo", parentPhoneNo)
+                    intent.putExtra("geolocation", geolocation)
                     intent.putExtra("children", numberOfChildren)
                     startActivity(intent)
-
                 }
 
             } else {

@@ -59,4 +59,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0-alpha02")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0-alpha02")
     implementation("androidx.activity:activity-ktx:1.7.2")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
+    implementation("org.apache.commons:commons-text:1.10.0")
+    implementation("com.google.code.gson:gson:2.10")
 }

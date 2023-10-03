@@ -17,7 +17,7 @@ import com.qemer.mwanga.databinding.ActivityLogInBinding
 import com.qemer.mwanga.databinding.ActivityMainDashboardBinding
 import com.qemer.mwanga.models.LoginRequest
 import com.qemer.mwanga.models.LoginResponse
-import com.qemer.mwanga.repository.UserRepository
+
 import com.qemer.mwanga.viewmodel.UserViewModel
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
