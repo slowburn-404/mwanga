@@ -44,6 +44,11 @@ class RecentRegistrationsAdapter(private var recentRegistrationsList: ArrayList<
         }
     }
 
+    fun filterList(filteredList: ArrayList<GetGuardiansResponse>) {
+        recentRegistrationsList = filteredList
+        notifyDataSetChanged()
+    }
+
     fun setFilteredParentList(filteredList: ArrayList<GetGuardiansResponse>) {
         this.recentRegistrationsList = filteredList
         notifyDataSetChanged()

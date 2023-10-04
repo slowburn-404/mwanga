@@ -18,7 +18,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiLoginInterface {
-    @POST("api/healthworker/login")
+    @POST("api/healthworker/login/")
     fun login(@Body userLogin: LoginRequest): Call<LoginResponse>
 
     @POST("api/guardians/")

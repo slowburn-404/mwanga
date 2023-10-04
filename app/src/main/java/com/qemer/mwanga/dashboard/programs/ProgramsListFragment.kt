@@ -31,6 +31,7 @@ class ProgramsListFragment : Fragment(){
 
     private lateinit var recentRegistrationsAdapter: RecentRegistrationsAdapter
     private var recentRegistrationsList = ArrayList<GetGuardiansResponse>()
+    private lateinit var originalRecentRegistrationsList: ArrayList<GetGuardiansResponse>
     private lateinit var apiClient: ApiLoginClient
 
     inner class ProgramsListQueryTextListener : SearchView.OnQueryTextListener {
@@ -56,6 +57,7 @@ class ProgramsListFragment : Fragment(){
         // Inflate the layout for this fragment
         _binding = FragmentProgramsListBinding.inflate(inflater, container, false)
         apiClient = ApiLoginClient()
+        originalRecentRegistrationsList = ArrayList()
 
         binding.dashboardTopAppBar.setNavigationOnClickListener {
             requireActivity().finish()
@@ -84,6 +86,8 @@ class ProgramsListFragment : Fragment(){
                 Log.d(SuccessModalFragment.TAG, "responseData" + response.body())
                 if (response.isSuccessful) {
                     progressDialog.dismiss()
+                    originalRecentRegistrationsList.clear()
+                    originalRecentRegistrationsList.addAll(response.body()!!)
                     recentRegistrationsAdapter = RecentRegistrationsAdapter(response.body()!!, requireContext())
                     binding.programsListRecyclerView.adapter = recentRegistrationsAdapter
                     val layoutManager: RecyclerView.LayoutManager = object : LinearLayoutManager(requireContext()) {
@@ -108,60 +112,13 @@ class ProgramsListFragment : Fragment(){
         })
     }
 
-//    private fun addSampleData() {
-//        val progressDialog = ProgressDialog(requireContext())
-//        progressDialog.setCancelable(false)
-//        progressDialog.setMessage("Fetching...")
-//        progressDialog.show()
-//
-//        apiClient.getApiService(requireContext()).getChildren().enqueue(object :
-//            Callback<ArrayList<GetChildrenResponse>> {
-//            override fun onResponse(call: Call<ArrayList<GetChildrenResponse>>, response: Response<ArrayList<GetChildrenResponse>>) {
-//                Log.d(SuccessModalFragment.TAG, "responseData" + response.body())
-//                if (response.isSuccessful) {
-//                    progressDialog.dismiss()
-//                    programsListAdapter = ProgramsListAdapter(response.body()!!, requireContext())
-//                    binding.programsListRecyclerView.adapter = programsListAdapter
-//                    val layoutManager: RecyclerView.LayoutManager = object : LinearLayoutManager(requireContext()) {
-//                        override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
-//                            return RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-//                        }
-//                    }
-//                    binding.programsListRecyclerView.layoutManager = layoutManager
-//                    binding.programsListRecyclerView.isNestedScrollingEnabled = true
-//                    binding.programsListRecyclerView.setHasFixedSize(true)
-//                } else{
-//                    progressDialog.dismiss()
-//                    Snackbar.make(requireView(), "Failed to get data, Retry!!", Snackbar.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ArrayList<GetChildrenResponse>>, t: Throwable) {
-//                Log.e("Gideon", "onFailure: ${t.message}")
-//                Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
-//            }
-//        })
-//    }
+    private fun filterParentInProgramList(query: String) {
+        val filteredList = originalRecentRegistrationsList.filter {
+            it.parentName.toLowerCase(Locale.getDefault()).contains(query.toLowerCase(Locale.getDefault()))
+        } as ArrayList<GetGuardiansResponse>
 
-    private fun filterParentInProgramList(text: String) {
-        val filteredParentInProgramList = ArrayList<GetGuardiansResponse>()
-        for (parent in recentRegistrationsList) {
-            val parentInProgramsListName = parent.parentName
-            if (parentInProgramsListName.lowercase().contains(text.lowercase(Locale.getDefault()))) {
-                filteredParentInProgramList.add(parent)
-            }
-        }
-
-        if (filteredParentInProgramList.isNotEmpty()) {
-            recentRegistrationsAdapter.setFilteredParentList(filteredParentInProgramList)
-        }
+        recentRegistrationsAdapter.filterList(filteredList)
     }
-
-//    override fun onItemClick(item: GetChildrenResponse) {
-//        requireActivity().run {
-//            startActivity(Intent(this, AddChildActivity::class.java))
-//        }
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
