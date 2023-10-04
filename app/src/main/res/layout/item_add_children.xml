@@ -56,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/date_of_birth"
+                android:hint="Date of birth (2001-12-23)"
                 app:boxStrokeWidth="2dp"
                 app:endIconDrawable="@drawable/calendar"
                 app:endIconMode="custom"
@@ -125,25 +125,47 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.textfield.TextInputLayout
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="280dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/child_sex"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:gravity="center_vertical|center_horizontal"-->
+<!--                android:hint="@string/delayed_milestones"-->
+<!--                app:boxStrokeWidth="2dp"-->
+<!--                app:endIconDrawable="@drawable/down_arrow"-->
+<!--                app:endIconMode="custom"-->
+<!--                app:hintTextColor="@color/main_color">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:id="@+id/child_delayed_milestones"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="280dp"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_below="@+id/child_sex"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:gravity="center_vertical|center_horizontal"
-                android:hint="@string/delayed_milestones"
-                app:boxStrokeWidth="2dp"
-                app:endIconDrawable="@drawable/down_arrow"
-                app:endIconMode="custom"
-                app:hintTextColor="@color/main_color">
+                android:background="@android:color/transparent"
+                android:elevation="0dp"
+                app:cardCornerRadius="4dp"
+                app:strokeColor="?attr/colorOutline"
+                app:strokeWidth="2dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <Spinner
                     android:id="@+id/child_delayed_milestones"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:entries="@array/milestones_array"
+                    android:padding="16dp"
+                    android:prompt="@string/delayed_milestones" />
+            </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
     >

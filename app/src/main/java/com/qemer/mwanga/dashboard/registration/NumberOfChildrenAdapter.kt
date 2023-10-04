@@ -1,16 +1,24 @@
 package com.qemer.mwanga.dashboard.registration
 
+import android.app.DatePickerDialog
+import android.content.Context
+import android.icu.util.Calendar
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ItemAddChildrenBinding
 
 class NumberOfChildrenAdapter(private val childrenList: List<NumberOfChildrenModel>,
-                              private val onGenderSelected: (Int, String) -> Unit) :
+                              private val onGenderSelected: (Int, String) -> Unit):
     RecyclerView.Adapter<NumberOfChildrenAdapter.ViewHolder>() {
+    var selectedItem:String?=null
     inner class ViewHolder(val binding: ItemAddChildrenBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -69,23 +77,57 @@ class NumberOfChildrenAdapter(private val childrenList: List<NumberOfChildrenMod
             }
         })
 
-        holder.binding.childDelayedMilestones.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        holder.binding.childDelayedMilestones.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                selectedItem = parentView.getItemAtPosition(position).toString()
+                Log.d("SelectedMilestone", selectedItem!!)
+                childrenList[position].delayedMilestones= selectedItem!!
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onNothingSelected(parentView: AdapterView<*>) {
             }
+        }
 
-            override fun afterTextChanged(s: Editable?) {
+//        holder.binding.ltBirth.setOnClickListener {
+//            val calendar = Calendar.getInstance()
+//            val year = calendar.get(Calendar.YEAR)
+//            val month = calendar.get(Calendar.MONTH)
+//            val day = calendar.get(Calendar.DAY_OF_MONTH)
+//
+//            val datePickerDialog = DatePickerDialog(
+//                context,
+//                { _, selectedYear, selectedMonth, selectedDay ->
+//                    val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+//                    holder.binding.childDateOfBirth.text = selectedDate
+//                    childrenList[position].DOB = selectedDate
+//                },
+//                year, month, day
+//            )
+//
+//            datePickerDialog.show()
+//        }
 
-                val delayedMilestones = s.toString()
-                childrenList[position].delayedMilestones= delayedMilestones
-            }
-        })
+//        holder.binding.childDelayedMilestones.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//            }
+//
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//            }
+//
+//            override fun afterTextChanged(s: Editable?) {
+//
+//                val delayedMilestones = s.toString()
+//                childrenList[position].delayedMilestones= delayedMilestones
+//            }
+//        })
     }
 
     override fun getItemCount(): Int {
         return childrenList.size
+    }
+
+    private fun showDatePicker() {
+
     }
 }
 

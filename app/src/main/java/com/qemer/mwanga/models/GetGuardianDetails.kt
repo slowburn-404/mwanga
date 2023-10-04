@@ -8,7 +8,7 @@ data class GetGuardianDetails(
     @SerializedName("parent_name") var parentName: String,
     @SerializedName("national_id") var nationalId: String,
     @SerializedName("number_of_children") var numberOfChildren: String,
-    @SerializedName("is_eligible") var isEligible: Boolean,
+    @SerializedName("is_eligible") var isEligible: String,
     @SerializedName("phone_number") var phoneNumber: String,
     @SerializedName("location") var location: String,
     @SerializedName("created_at") var createdAt: String,

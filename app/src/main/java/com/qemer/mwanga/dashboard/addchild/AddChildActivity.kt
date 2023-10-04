@@ -2,6 +2,7 @@ package com.qemer.mwanga.dashboard.addchild
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.core.view.WindowCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -17,5 +18,7 @@ class AddChildActivity : AppCompatActivity() {
         binding = ActivityAddChildBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val parentName = intent.getStringExtra("id")
+        Log.d("Gideon", parentName.toString())
     }
 }

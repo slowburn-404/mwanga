@@ -16,16 +16,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/api/ApiLoginClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/api/ApiLoginClient.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/AddChildActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/api/ApiLoginInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/api/ApiLoginInterface.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/auth/LogInActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/auth/LogInActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddChildActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddChildActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddNewChildFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddNewChildFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/DetailsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/DetailsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/home/HomeFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/home/RecentRegistrationsAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/home/RecentRegistrationsAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/OnItemClickListener.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/OnItemClickListener.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/ProgramsListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/ProgramsListAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/ProgramsListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/ProgramsListFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/models/LoginResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/models/LoginResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/NumberOfChildrenAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/NumberOfChildrenAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/NumberOfChildrenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/NumberOfChildrenFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/ParentsChildrenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/ParentsChildrenFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/models/GetGuardianDetails.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/models/GetGuardianDetails.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_new_child.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_add_new_child.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_details.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_details.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_add_children.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_add_children.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

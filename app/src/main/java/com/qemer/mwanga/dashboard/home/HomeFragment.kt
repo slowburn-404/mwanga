@@ -26,7 +26,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class HomeFragment : Fragment(), HomeOnItemClickListener {
+class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
@@ -92,6 +92,7 @@ class HomeFragment : Fragment(), HomeOnItemClickListener {
 
             override fun onFailure(call: Call<ArrayList<GetGuardiansResponse>>, t: Throwable) {
                 Log.e("Gideon", "onFailure: ${t.message}")
+                progressDialog.dismiss()
                 Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
             }
         })
@@ -105,8 +106,8 @@ class HomeFragment : Fragment(), HomeOnItemClickListener {
         binding.viewMore.text = spannableString
     }
 
-    override fun onItemClick(item: RecentRegistrations) {
-    }
+//    override fun onItemClick(item: GetGuardiansResponse) {
+//    }
     private fun navigateToProgramsListFragment () {
         val navController = findNavController()
         val action = HomeFragmentDirections.actionHomeFragmentToProgramsListFragment()

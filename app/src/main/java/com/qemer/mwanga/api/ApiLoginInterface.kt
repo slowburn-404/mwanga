@@ -33,6 +33,6 @@ interface ApiLoginInterface {
     @GET("api/children/")
     fun getChildren(): Call<ArrayList<GetChildrenResponse>>
 
-    @GET("api/guardians/{id}")
+    @GET("api/guardians/{id}/")
     fun getGuardianDetails(@Path("id") id: String?): Call<GetGuardianDetails>
 }

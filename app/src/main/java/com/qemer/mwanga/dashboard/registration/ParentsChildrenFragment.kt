@@ -85,11 +85,11 @@ class ParentsChildrenFragment : Fragment() {
                     if (response.isSuccessful) {
                         progressDialog.dismiss()
                         Log.e("Gideon", "onSuccess: ${response.body()!!.id}")
-                        showSuccessModal()
-
-                        val intent = Intent(requireContext(), MainDashboardActivity::class.java)
-                        startActivity(intent)
-//                        createChild(response.body()!!.id)
+                        Snackbar.make(it, "Success", Snackbar.LENGTH_SHORT).show()
+                        createChild(response.body()!!.id)
+                    } else{
+                        progressDialog.dismiss()
+                        Snackbar.make(it, "Failed", Snackbar.LENGTH_SHORT).show()
                     }
                 }
 
@@ -108,59 +108,82 @@ class ParentsChildrenFragment : Fragment() {
     }
 
     private fun createChild(id: String) {
+        val receivedChildrenListString = arguments?.getString("childrenListString")
+        if (receivedChildrenListString.isNullOrEmpty()) {
+            return
+        }
+
+        val cleanedString = receivedChildrenListString.trim('[', ']')
+        val entries = cleanedString.split("), ")
+
+        val receivedChildrenList = ArrayList<NumberOfChildrenModel>()
+
+        for (entry in entries) {
+            val parts = entry.split(", ")
+            if (parts.size >= 4) {
+                val childName = parts[1].substringAfter('=')
+                val DOB = parts[2].substringAfter('=')
+                val gender = parts[3].substringAfter('=')
+
+                val childModel = NumberOfChildrenModel(
+                    childNumber = "", // You may need to add logic to extract childNumber
+                    childName = childName,
+                    DOB = DOB,
+                    gender = gender,
+                    delayedMilestones = ""
+                )
+                receivedChildrenList.add(childModel)
+            }
+        }
+
+        if (receivedChildrenList.isEmpty()) {
+            return
+        }
+
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setCancelable(false)
-        progressDialog.setMessage("submitting..")
+        progressDialog.setMessage("Submitting...")
         progressDialog.show()
-        val receivedChildrenListString = arguments?.getString("childrenListString")
 
-        if (receivedChildrenListString != null) {
+        var successfulApiCalls = 0
+        val totalApiCalls = receivedChildrenList.size
 
-            val cleanedString = if (receivedChildrenListString.endsWith("]")) {
-                receivedChildrenListString.substring(0, receivedChildrenListString.length - 1)
-            } else {
-                receivedChildrenListString
-            }
+        for (childModel in receivedChildrenList) {
+            val requestData = ChildCreateRequest(
+                childModel.childName,
+                childModel.DOB,
+                childModel.gender,
+                "Cannot Sit",
+                id
+            )
 
-            val formattedString = cleanedString.trim('[', ']')
-
-            val entries = formattedString.split("), ")
-
-            val receivedChildrenList = ArrayList<NumberOfChildrenModel>()
-
-            var successfulApiCalls = 0 // Initialize a counter for successful API calls
-            val totalApiCalls = entries.size // Total number of API calls to be made
-
-            for (childModel in receivedChildrenList) {
-                val requestData = ChildCreateRequest(
-                    childModel.childName,
-                    childModel.DOB,
-                    childModel.gender,
-                    childModel.delayedMilestones,
-                    id,
-                )
-
-                apiClient.getApiService(requireContext()).childRegistration(requestData)
-                    .enqueue(object : Callback<ChildCreateResponse> {
-                        override fun onResponse(
-                            call: Call<ChildCreateResponse>,
-                            response: Response<ChildCreateResponse>
-                        ) {
-                            if (response.isSuccessful) {
-                                successfulApiCalls++
-                                if (successfulApiCalls == totalApiCalls) {
-                                    // All API calls are successful, dismiss the progress dialog and show success message
-                                    progressDialog.dismiss()
-                                    showSuccessModal()
-                                }
+            apiClient.getApiService(requireContext()).childRegistration(requestData)
+                .enqueue(object : Callback<ChildCreateResponse> {
+                    override fun onResponse(
+                        call: Call<ChildCreateResponse>,
+                        response: Response<ChildCreateResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            successfulApiCalls++
+                            if (successfulApiCalls == totalApiCalls) {
+                                progressDialog.dismiss()
+                                Snackbar.make(requireView(), "Success", Snackbar.LENGTH_SHORT).show()
+                                val intent = Intent(requireContext(), MainDashboardActivity::class.java)
+                                startActivity(intent)
                             }
+                        } else {
+                            progressDialog.dismiss()
+                            Log.e("Gideon", response.message())
+                            Snackbar.make(requireView(), "Failed", Snackbar.LENGTH_SHORT).show()
                         }
+                    }
 
-                        override fun onFailure(call: Call<ChildCreateResponse>, t: Throwable) {
-                            Log.e("Gideon", "onFailure: ${t.message}")
-                        }
-                    })
-            }
+                    override fun onFailure(call: Call<ChildCreateResponse>, t: Throwable) {
+                        Log.e("Gideon", "onFailure: ${t.message}")
+                        progressDialog.dismiss()
+                        Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
+                    }
+                })
         }
     }
 

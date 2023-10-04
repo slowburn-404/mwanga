@@ -33,7 +33,6 @@ class NumberOfChildrenFragment : Fragment() {
         binding.btNext.setOnClickListener {
             val bundle = Bundle()
             bundle.putString("childrenListString", ArrayList(childrenList).toString())
-            Log.d("A", ArrayList(childrenList).toString())
             findNavController().navigate(R.id.action_numberOfChildrenFragment_to_parentsChildrenFragment, bundle)
         }
         binding.numberOfChildrenTopAppBar.setNavigationOnClickListener {

@@ -32,7 +32,7 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/child_name"
+            android:id="@+id/ltChildName"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -43,36 +43,48 @@
             app:hintTextColor="@color/main_color">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/child_date_of_birth"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/child_name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:hint="@string/date_of_birth"
-            app:boxStrokeWidth="2dp"
-            app:endIconDrawable="@drawable/calendar"
-            app:endIconMode="custom"
-            app:hintTextColor="@color/main_color">
-
-            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/child_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/ltBirth"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_below="@+id/ltChildName"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:hint="@string/date_of_birth"
+            app:boxStrokeWidth="2dp"
+            app:cardCornerRadius="4dp"
+            app:endIconDrawable="@drawable/calendar"
+            app:endIconMode="custom"
+            app:hintTextColor="@color/main_color"
+            app:strokeColor="?attr/colorOutline"
+            app:strokeWidth="2dp">
+
+            <TextView
+                android:id="@+id/child_date_of_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/alt_black"
+                android:textSize="16sp"
+                android:hint="@string/date_of_birth" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/child_sex"
             android:layout_width="300dp"
             android:layout_height="48dp"
-            android:layout_below="@+id/child_date_of_birth"
+            android:layout_below="@+id/ltBirth"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:background="@android:color/transparent"
@@ -99,19 +111,27 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content" />
 
-                <CheckBox
-                    android:id="@+id/cb_male"
+                <RadioGroup
+                    android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:text="Male" />
+                    android:orientation="horizontal">
 
-                <CheckBox
-                    android:id="@+id/cb_female"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:text="Female" />
+                    <RadioButton
+                        android:id="@+id/male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Female" />
+                </RadioGroup>
+
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -128,14 +148,15 @@
             app:cardCornerRadius="4dp"
             app:strokeColor="?attr/colorOutline"
             app:strokeWidth="2dp">
+
             <Spinner
                 android:id="@+id/milestones_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:padding="16dp"
                 android:entries="@array/milestones_array"
-                android:prompt="@string/delayed_milestones"/>
+                android:padding="16dp"
+                android:prompt="@string/delayed_milestones" />
         </com.google.android.material.card.MaterialCardView>
 
 
@@ -155,6 +176,4 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
-
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
