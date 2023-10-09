@@ -3,17 +3,14 @@ package com.qemer.mwanga.dashboard.home
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.dashboard.addchild.AddChildActivity
 import com.qemer.mwanga.databinding.ItemRegistrationBinding
-import com.qemer.mwanga.models.GetChildrenResponse
 import com.qemer.mwanga.models.GetGuardiansResponse
 import java.time.Instant
 import java.time.ZoneId
@@ -31,15 +28,25 @@ class RecentRegistrationsAdapter(private var recentRegistrationsList: ArrayList<
             try {
                 val instant = Instant.parse(recentRegistrations.createdAt)
                 val localDateTime = instant.atZone(ZoneId.of("UTC")).toLocalDateTime()
+//
+//                val outputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+//
+//                val formattedDate = localDateTime.format(outputFormat)
+//                binding.date.text = formattedDate
+//                binding.time.text =
+                val outputDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+                val outputTimeFormat = DateTimeFormatter.ofPattern("HH:mm")
 
-                val outputFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+                val formattedDate = localDateTime.format(outputDateFormat)
+                val formattedTime = localDateTime.format(outputTimeFormat)
 
-                val formattedDate = localDateTime.format(outputFormat)
                 binding.date.text = formattedDate
+                binding.time.text = formattedTime
 
             } catch (e: Exception) {
                 e.printStackTrace()
                 binding.date.text = "Invalid Date"
+                binding.time.text = "Invalid Time"
             }
         }
     }
@@ -70,10 +77,6 @@ class RecentRegistrationsAdapter(private var recentRegistrationsList: ArrayList<
             intent.putExtra("fragmentToLoad", "DetailsFragment")
             sharedPreferences.edit().putString("parentId", item.id).apply()
             context.startActivity(intent)
-//            itemClickListener.onItemClick(item)
-//            requireActivity().run {
-//                context.startActivity(Intent(this, AddChildActivity::class.java))
-//            }
 
         }
         //set alternating background color

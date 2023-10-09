@@ -1,7 +1,6 @@
 package com.qemer.mwanga.dashboard.programs
 
 import android.app.ProgressDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,11 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.qemer.mwanga.api.ApiLoginClient
 import com.qemer.mwanga.dashboard.SuccessModalFragment
-import com.qemer.mwanga.dashboard.addchild.AddChildActivity
-import com.qemer.mwanga.dashboard.home.RecentRegistrations
 import com.qemer.mwanga.dashboard.home.RecentRegistrationsAdapter
 import com.qemer.mwanga.databinding.FragmentProgramsListBinding
-import com.qemer.mwanga.models.GetChildrenResponse
 import com.qemer.mwanga.models.GetGuardiansResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -53,8 +49,6 @@ class ProgramsListFragment : Fragment(){
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
         _binding = FragmentProgramsListBinding.inflate(inflater, container, false)
         apiClient = ApiLoginClient()
         originalRecentRegistrationsList = ArrayList()

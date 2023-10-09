@@ -1,11 +1,7 @@
 package com.qemer.mwanga
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.qemer.mwanga.databinding.ActivityAddchildBinding
-import com.qemer.mwanga.databinding.ActivityProfileBinding
+import androidx.appcompat.app.AppCompatActivity
 
 class Profile : AppCompatActivity() {
 
