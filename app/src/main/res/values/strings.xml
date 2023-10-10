@@ -50,11 +50,11 @@
     <string name="moving_ability" translatable="false">Moving Ability</string>
     <string name="track" translatable="false">Track</string>
     <string-array name="milestones_array">
-        <item>Child cannot sit</item>
-        <item>Child cannot move the head</item>
-        <item>Child cannot walk</item>
-        <item>Child cannot stand</item>
-        <item>Lay on the stomach</item>
+        <item>Cannot sit</item>
+        <item>Cannot Move Head</item>
+        <item>Cannot Walk</item>
+        <item>Cannot Use Hands</item>
+        <item>Other</item>
     </string-array>
 
 </resources>

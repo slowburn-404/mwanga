@@ -62,4 +62,5 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
     implementation("org.apache.commons:commons-text:1.10.0")
     implementation("com.google.code.gson:gson:2.10")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
 }

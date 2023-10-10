@@ -1,7 +1,9 @@
 package com.qemer.mwanga.dashboard.home
 
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.app.ProgressDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.UnderlineSpan
@@ -10,6 +12,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var recentRegistrationsAdapter: RecentRegistrationsAdapter
     private var recentRegistrationsList = ArrayList<RecentRegistrations>()
     private lateinit var apiClient: ApiLoginClient
+    private val LOCATION_PERMISSION_REQUEST_CODE = 1001
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -40,6 +45,12 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         apiClient = ApiLoginClient()
+
+        if (isLocationPermissionGranted()) {
+        } else {
+            requestLocationPermission()
+        }
+
         binding.dashboardTopAppBar.setNavigationOnClickListener { menuItem ->
             when (menuItem.id) {
                 R.id.profile -> {
@@ -62,6 +73,23 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    private fun isLocationPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(requireContext(), ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(requireActivity(), arrayOf(ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
+    }
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Snackbar.make(requireView(), "Permission granted", Snackbar.LENGTH_SHORT).show()
+            } else {
+                Snackbar.make(requireView(), "Permission denied", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
     private fun addSampleData() {
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setCancelable(false) // set cancelable to false
@@ -106,8 +134,6 @@ class HomeFragment : Fragment() {
         binding.viewMore.text = spannableString
     }
 
-//    override fun onItemClick(item: GetGuardiansResponse) {
-//    }
     private fun navigateToProgramsListFragment () {
         val navController = findNavController()
         val action = HomeFragmentDirections.actionHomeFragmentToProgramsListFragment()
@@ -116,7 +142,6 @@ class HomeFragment : Fragment() {
         ).build()
         navController.navigate(action,navOptions )
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

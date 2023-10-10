@@ -88,7 +88,7 @@ class AddNewChildFragment : Fragment() {
                     binding.childName.text.toString().trim(),
                     binding.childDateOfBirth.text.toString(),
                     selectedGender!!,
-                    "Cannot Sit",
+                    selectedItem!!,
                     parentId.toString()
                 )
                 Log.d("requestData", requestData.toString())
