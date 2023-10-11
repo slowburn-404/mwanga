@@ -82,12 +82,10 @@ class RegistrationFragment : Fragment() {
         val parentsId = validateField(binding.parentsId, "Parent's ID is required")
         val parentsPhoneNumber =
             validateField(binding.parentsPhoneNumber, "Parent's Phone Number is required")
-        val parentsGeoLocation =
-            validateField(binding.parentsGeoLocation, "Geo Location is required")
         val numberOfChildren =
             validateField(binding.numberOfChildren, "Number of Children is required")
 
-        return parentName.isNotEmpty() && parentsId.isNotEmpty() && parentsPhoneNumber.isNotEmpty() && parentsGeoLocation.isNotEmpty() && numberOfChildren.isNotEmpty()
+        return parentName.isNotEmpty() && parentsId.isNotEmpty() && parentsPhoneNumber.isNotEmpty() && numberOfChildren.isNotEmpty()
     }
 
     private fun validateField(textInputLayout: TextInputLayout, errorMessage: String): String {
