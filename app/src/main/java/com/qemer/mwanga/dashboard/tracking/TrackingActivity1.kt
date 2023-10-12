@@ -86,71 +86,43 @@ class TrackingActivity1 : AppCompatActivity() {
         return when (cardIndex) {
             0 -> when (ratingIndex) {
                 0 -> binding.tvOne
-
                 1 -> binding.tvTwo
-
                 2 -> binding.tvThree
-
                 3 -> binding.tvFour
-
                 4 -> binding.tvFive
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
 
             1 -> when (ratingIndex) {
                 0 -> binding.tvOne1Cooking
-
                 1 -> binding.tvTwoCooking
-
                 2 -> binding.tvThree1Cooking
-
                 3 -> binding.tvFourCooking
-
                 4 -> binding.tvFive1
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
 
             2 -> when (ratingIndex) {
-
-
                 0 -> binding.tvOnePlaying
-
                 1 -> binding.tvTwoPlaying
-
                 2 -> binding.tvThreePlaying
-
                 3 -> binding.tvFourPlaying
-
                 4 -> binding.tvFivePlaying
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
             3 -> when (ratingIndex) {
-
                 0 -> binding.tvOneWashing
-
-
                 1 -> binding.tvTwoWashing
-
-
                 2 -> binding.tvThreeWashing
-
-
                 3 -> binding.tvFourWashing
-
                 4 -> binding.tvFiveWashing
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
-
             else -> throw IllegalArgumentException("Invalid cardIndex")
         }
     }
 
     private fun updateTotalSum() {
-
         var totalSum = 0
         var rating = IntArray(4)
         for (cardIndex in 0 until 4) {
@@ -164,7 +136,6 @@ class TrackingActivity1 : AppCompatActivity() {
 
         Tracking.selfCare = totalSum
         binding.textView11.text = " SC = $totalSum"
-
 
         val selfCareRequest =  SelfCareRequest(
             bathing =  rating[0],

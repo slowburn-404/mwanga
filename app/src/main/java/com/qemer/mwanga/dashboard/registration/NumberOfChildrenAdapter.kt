@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ItemAddChildrenBinding
 
-class NumberOfChildrenAdapter(private val childrenList: List<NumberOfChildrenModel>,
-                              private val onGenderSelected: (Int, String) -> Unit):
-    RecyclerView.Adapter<NumberOfChildrenAdapter.ViewHolder>() {
+class NumberOfChildrenAdapter(private val context: Context, private val childrenList: List<NumberOfChildrenModel>, private val onGenderSelected: (Int, String) -> Unit): RecyclerView.Adapter<NumberOfChildrenAdapter.ViewHolder>() {
     var selectedItem:String?=null
     inner class ViewHolder(val binding: ItemAddChildrenBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -48,47 +46,43 @@ class NumberOfChildrenAdapter(private val childrenList: List<NumberOfChildrenMod
         }
 
         holder.binding.childName.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Not needed for your case
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Not needed for your case
-            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                // This is called after the text in the EditText changes.
-
                 val childName = s.toString()
                 childrenList[position].childName = childName
             }
         })
 
-        holder.binding.childDateOfBirth.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
+        holder.binding.ltBirth.setOnClickListener{
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
+            val datePickerDialog = DatePickerDialog(
+                context,
+                { _, selectedYear, selectedMonth, selectedDay ->
+                    val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+                    holder.binding.childDateOfBirth.text = selectedDate
+                    childrenList[position].DOB = selectedDate
+                },
+                year, month, day
+            )
 
-            override fun afterTextChanged(s: Editable?) {
-                val DOB = s.toString()
-                childrenList[position].DOB = DOB
-            }
-        })
-
-        holder.binding.childDelayedMilestones.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
-                selectedItem = parentView.getItemAtPosition(position).toString()
-                Log.d("SelectedMilestone", selectedItem!!)
-                childrenList[position].delayedMilestones= selectedItem!!
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>) {
-            }
+            datePickerDialog.show()
         }
 
+        holder.binding.childDelayedMilestones.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position2: Int, id: Long) {
+                val selectedItem = context.resources.getStringArray(R.array.milestones_array)[position2]
+                childrenList[position].delayedMilestones = selectedItem
+            }
 
+            override fun onNothingSelected(parentView: AdapterView<*>?) {}
+        }
     }
 
     override fun getItemCount(): Int {

@@ -22,10 +22,7 @@ class NumberOfChildrenFragment : Fragment() {
     private var childrenList = ArrayList<NumberOfChildrenModel>()
     private var selectedGender: String? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentNumberOfChildrenBinding.inflate(inflater, container, false)
         childrenList.clear()
         addForms()
@@ -65,7 +62,7 @@ class NumberOfChildrenFragment : Fragment() {
             )
         }
 
-        val numberOfChildrenAdapter = NumberOfChildrenAdapter(childrenList) { position, gender ->
+        val numberOfChildrenAdapter = NumberOfChildrenAdapter(requireContext(), childrenList) { position, gender ->
             childrenList[position].gender = gender
         }
 

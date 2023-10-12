@@ -38,16 +38,15 @@ class ParentsChildrenFragment : Fragment() {
     var totalChildren:String = ""
     private lateinit var apiClient: ApiLoginClient
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentParentsChildrenBinding.inflate(inflater, container, false)
         binding.parentsChildrenTopAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
         apiClient = ApiLoginClient()
 
+        val receivedChildrenListString = arguments?.getString("childrenListString")
+        Log.d("receivedChildrenList", receivedChildrenListString!!)
         val parentData = getParentData()
         if (parentData != null) {
             parentName = parentData.parentName
@@ -67,10 +66,10 @@ class ParentsChildrenFragment : Fragment() {
         }
         binding.btSubmit.setOnClickListener {
             val progressDialog = ProgressDialog(requireContext())
-            progressDialog.setCancelable(false) // set cancelable to false
-            progressDialog.setMessage("submitting..") // set message
+            progressDialog.setCancelable(false)
+            progressDialog.setMessage("submitting..")
             progressDialog.show()
-            showSuccessModal()
+//            showSuccessModal()
 
             val requestData = GuardianRegistrationRequest(
                 parentName,
@@ -114,24 +113,31 @@ class ParentsChildrenFragment : Fragment() {
             return
         }
 
+        // Remove leading and trailing brackets
         val cleanedString = receivedChildrenListString.trim('[', ']')
         val entries = cleanedString.split("), ")
 
         val receivedChildrenList = ArrayList<NumberOfChildrenModel>()
 
-        for (entry in entries) {
+        for ((index, entry) in entries.withIndex()) {
             val parts = entry.split(", ")
             if (parts.size >= 4) {
                 val childName = parts[1].substringAfter('=')
                 val DOB = parts[2].substringAfter('=')
                 val gender = parts[3].substringAfter('=')
 
+                var delayedMilestones = parts[4].substringAfter('=')
+
+                if (index == entries.size - 1) {
+                    delayedMilestones = delayedMilestones.trimEnd(')')
+                }
+
                 val childModel = NumberOfChildrenModel(
-                    childNumber = "", // You may need to add logic to extract childNumber
+                    childNumber = "",
                     childName = childName,
                     DOB = DOB,
                     gender = gender,
-                    delayedMilestones = ""
+                    delayedMilestones = delayedMilestones
                 )
                 receivedChildrenList.add(childModel)
             }
@@ -154,39 +160,36 @@ class ParentsChildrenFragment : Fragment() {
                 childModel.childName,
                 childModel.DOB,
                 childModel.gender,
-                "Cannot Sit",
+                childModel.delayedMilestones,
                 id
             )
 
-            apiClient.getApiService(requireContext()).childRegistration(requestData)
-                .enqueue(object : Callback<ChildCreateResponse> {
-                    override fun onResponse(
-                        call: Call<ChildCreateResponse>,
-                        response: Response<ChildCreateResponse>
-                    ) {
-                        if (response.isSuccessful) {
-                            successfulApiCalls++
-                            if (successfulApiCalls == totalApiCalls) {
-                                progressDialog.dismiss()
-                                Snackbar.make(requireView(), "Success", Snackbar.LENGTH_SHORT).show()
-                                val intent = Intent(requireContext(), MainDashboardActivity::class.java)
-                                startActivity(intent)
-                            }
-                        } else {
+            apiClient.getApiService(requireContext()).childRegistration(requestData).enqueue(object : Callback<ChildCreateResponse> {
+                override fun onResponse(call: Call<ChildCreateResponse>, response: Response<ChildCreateResponse>) {
+                    if (response.isSuccessful) {
+                        successfulApiCalls++
+                        if (successfulApiCalls == totalApiCalls) {
                             progressDialog.dismiss()
-                            Log.e("Angela", response.message())
-                            Snackbar.make(requireView(), "Failed", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(requireView(), "Success", Snackbar.LENGTH_SHORT).show()
+                            val intent = Intent(requireContext(), MainDashboardActivity::class.java)
+                            startActivity(intent)
                         }
-                    }
-
-                    override fun onFailure(call: Call<ChildCreateResponse>, t: Throwable) {
-                        Log.e("Angela", "onFailure: ${t.message}")
+                    } else {
                         progressDialog.dismiss()
-                        Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
+                        Log.e("Angela", response.message())
+                        Snackbar.make(requireView(), "Failed", Snackbar.LENGTH_SHORT).show()
                     }
-                })
+                }
+
+                override fun onFailure(call: Call<ChildCreateResponse>, t: Throwable) {
+                    Log.e("Angela", "onFailure: ${t.message}")
+                    progressDialog.dismiss()
+                    Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
+                }
+            })
         }
     }
+
 
     private fun showSuccessModal() {
         val successModal = SuccessModalFragment()
@@ -213,7 +216,6 @@ class ParentsChildrenFragment : Fragment() {
         val receivedChildrenListString = arguments?.getString("childrenListString")
 
         if (receivedChildrenListString != null) {
-
             // Remove the extra bracket at the end of the string
             val cleanedString = if (receivedChildrenListString.endsWith("]")) {
                 receivedChildrenListString.substring(0, receivedChildrenListString.length - 1)
@@ -233,7 +235,11 @@ class ParentsChildrenFragment : Fragment() {
                 val childName = keyValuePairs.find { it.startsWith("childName=") }?.split("=")?.get(1) ?: ""
                 val DOB = keyValuePairs.find { it.startsWith("DOB=") }?.split("=")?.get(1) ?: ""
                 val gender = keyValuePairs.find { it.startsWith("gender=") }?.split("=")?.get(1) ?: ""
-                val delayedMilestones = keyValuePairs.find { it.startsWith("delayedMilestones=") }?.split("=")?.get(1) ?: ""
+                var delayedMilestones = keyValuePairs.find { it.startsWith("delayedMilestones=") }?.split("=")?.get(1) ?: ""
+
+                if (entry == entries.last()) {
+                    delayedMilestones = delayedMilestones.trimEnd(')')
+                }
 
                 val numberOfChildrenModel = NumberOfChildrenModel(childNumber, childName, DOB, gender, delayedMilestones)
                 receivedChildrenList.add(numberOfChildrenModel)
@@ -245,6 +251,7 @@ class ParentsChildrenFragment : Fragment() {
             binding.parentsChildrenRecyclerview.adapter = adapter
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

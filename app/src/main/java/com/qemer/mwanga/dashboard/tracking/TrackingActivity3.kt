@@ -10,7 +10,6 @@ import com.qemer.mwanga.databinding.ActivityTracking3Binding
 import com.qemer.mwanga.utils.Tracking
 
 class TrackingActivity3 : AppCompatActivity() {
-
     private lateinit var binding: ActivityTracking3Binding
     private lateinit var selectedRating: MutableList<MutableList<Int>>
     var dailyLiving = 0
@@ -21,7 +20,7 @@ class TrackingActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTracking3Binding.inflate(layoutInflater)
         setContentView(binding.root)
-        dailyLiving =  getIntent().getIntExtra("dailyLiving" , 0)
+        dailyLiving = intent.getIntExtra("dailyLiving" , 0)
 
         val track3 = binding.bntNext
         track3.setOnClickListener {
@@ -37,7 +36,6 @@ class TrackingActivity3 : AppCompatActivity() {
             finish()
         }
 
-
         selectedRating = MutableList(4) { MutableList(5) { 0 } }
 
         for (cardIndex in 0 until 4) {
@@ -51,14 +49,11 @@ class TrackingActivity3 : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun setActiveRating(cardIndex: Int, ratingIndex: Int) {
         val ratingTextView = getRatingTextView(cardIndex, ratingIndex)
-
         ratingTextView.setBackgroundResource(R.drawable.circle_background)
-
         for (i in 0 until 5) {
             if (i != ratingIndex) {
                 val otherRatingTextView = getRatingTextView(cardIndex, i)
@@ -72,72 +67,37 @@ class TrackingActivity3 : AppCompatActivity() {
         return when (cardIndex) {
             0 -> when (ratingIndex) {
                 0 -> binding.tvOne
-
                 1 -> binding.tvTwo
-
-
                 2 -> binding.tvThree
-
-
                 3 -> binding.tvFour
-
-
                 4 -> binding.tvFive
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
 
             1 -> when (ratingIndex) {
                 0 -> binding.tvOne1Cooking
-
                 1 -> binding.tvTwoCooking
-
                 2 -> binding.tvThree1Cooking
-
                 3 -> binding.tvFourCooking
-
                 4 -> binding.tvFive1
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
 
             2 -> when (ratingIndex) {
-
-
                 0 -> binding.tvOnePlaying
-
-
                 1 -> binding.tvTwoPlaying
-
-
                 2 -> binding.tvThreePlaying
-
-
                 3 -> binding.tvFourPlaying
-
-
                 4 -> binding.tvFivePlaying
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
-
             }
 
             3 -> when (ratingIndex) {
-
                 0 -> binding.tvOneWashing
-
-
                 1 -> binding.tvTwoWashing
-
-
                 2 -> binding.tvThreeWashing
-
-
                 3 -> binding.tvFourWashing
-
-
                 4 -> binding.tvFiveWashing
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
             // Add cases for other cardIndexes (1, 2, 3, 4) similarly
@@ -162,8 +122,4 @@ class TrackingActivity3 : AppCompatActivity() {
         totalSum += Tracking.selfCare + Tracking.dailyLiving
         binding.textView11.text = " SC : ${Tracking.selfCare} + DL : ${Tracking.dailyLiving} + MA: $movingAbility  = $totalSum"
     }
-
-
-
-
 }

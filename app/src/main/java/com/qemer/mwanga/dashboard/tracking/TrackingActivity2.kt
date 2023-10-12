@@ -15,7 +15,6 @@ class TrackingActivity2 : AppCompatActivity() {
     var selfCare = 0
     var dailyLiving = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTracking2Binding.inflate(layoutInflater)
@@ -23,8 +22,6 @@ class TrackingActivity2 : AppCompatActivity() {
         selfCare =  getIntent().getIntExtra("selfCare" , 0)
         dailyLiving = getIntent().getIntExtra("dailyLiving", 0)
         Log.d("debug", selfCare.toString())
-
-
 //        fetchDailyLiving()
 
         val track2 = binding.bntNext
@@ -39,9 +36,6 @@ class TrackingActivity2 : AppCompatActivity() {
             startActivity(intent)
         }
 //        }
-
-
-
 
         val track22 = binding.btnBack
         track22.setOnClickListener {
@@ -63,7 +57,6 @@ class TrackingActivity2 : AppCompatActivity() {
             }
         }
     }
-
 
 //    private fun fetchDailyLiving() {
 //        lifecycleScope.launch {
@@ -97,10 +90,6 @@ class TrackingActivity2 : AppCompatActivity() {
 //        }
 //
 //    }
-
-
-
-
     private fun setActiveRating(cardIndex: Int, ratingIndex: Int) {
         val ratingTextView = getRatingTextView(cardIndex, ratingIndex)
 
@@ -112,7 +101,6 @@ class TrackingActivity2 : AppCompatActivity() {
                 otherRatingTextView.setBackgroundResource(R.drawable.circle_background_light)
             }
         }
-
         updateTotalSum()
     }
 
@@ -120,71 +108,37 @@ class TrackingActivity2 : AppCompatActivity() {
         return when (cardIndex) {
             0 -> when (ratingIndex) {
                 0 -> binding.tvOne
-
                 1 -> binding.tvTwo
-
-
                 2 -> binding.tvThree
-
-
                 3 -> binding.tvFour
-
-
                 4 -> binding.tvFive
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
 
             1 -> when (ratingIndex) {
                 0 -> binding.tvOne1Cooking
-
                 1 -> binding.tvTwoCooking
-
                 2 -> binding.tvThree1Cooking
-
                 3 -> binding.tvFourCooking
-
                 4 -> binding.tvFive1
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
 
             2 -> when (ratingIndex) {
-
-
                 0 -> binding.tvOnePlaying
-
-
                 1 -> binding.tvTwoPlaying
-
-
                 2 -> binding.tvThreePlaying
-
-
                 3 -> binding.tvFourPlaying
-
                 4 -> binding.tvFivePlaying
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
-
             }
 
             3 -> when (ratingIndex) {
-
                 0 -> binding.tvOneWashing
-
-
                 1 -> binding.tvTwoWashing
-
-
                 2 -> binding.tvThreeWashing
-
-
                 3 -> binding.tvFourWashing
-
-
                 4 -> binding.tvFiveWashing
-
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
             else -> throw IllegalArgumentException("Invalid cardIndex")

@@ -13,17 +13,10 @@ import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.FragmentSuccessModalBinding
 import android.graphics.Bitmap
 
-
-
-
-
 class SuccessModalFragment : DialogFragment() {
     private lateinit var binding: FragmentSuccessModalBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = FragmentSuccessModalBinding.inflate(inflater, container, false)
 

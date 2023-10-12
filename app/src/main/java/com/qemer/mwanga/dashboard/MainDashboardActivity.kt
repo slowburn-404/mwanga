@@ -19,8 +19,7 @@ class MainDashboardActivity : AppCompatActivity() {
 
         binding.dashboardBottomNavigation.itemIconTintList = null
 
-         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.main_dashboard_navhost_fragment) as NavHostFragment
+         val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_dashboard_navhost_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         binding.dashboardBottomNavigation.setupWithNavController(navController)
 
