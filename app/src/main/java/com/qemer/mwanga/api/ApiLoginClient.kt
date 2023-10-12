@@ -16,16 +16,24 @@ class ApiLoginClient {
 
     var gson = GsonBuilder().setLenient().create()
 
-    fun getApiService(context: Context): ApiLoginInterface {
-        if (!::apiService.isInitialized) {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://qemer-backend-764e0de661a5.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create(gson)).client(
-                    OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
+  fun getApiService(context: Context): ApiLoginInterface {
+     if (!::apiService.isInitialized) {
+          val retrofit = Retrofit.Builder()
+              .baseUrl("https://qemer-backend-764e0de661a5.herokuapp.com/")
+            .addConverterFactory(GsonConverterFactory.create(gson)).client(
+                  OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
                 ).build()
 
-            apiService = retrofit.create(ApiLoginInterface::class.java)
-        }
-        return apiService
+          apiService = retrofit.create(ApiLoginInterface::class.java)
+      }
+       return apiService
     }
+
+//    val retrofit = Retrofit.Builder()
+//        .baseUrl("https://qemer-backend-764e0de661a5.herokuapp.com/")
+//        .addConverterFactory(GsonConverterFactory.create())
+//        .build()
+//    fun <T> buildClient(apiInterface:Class<T>):T{
+//        return retrofit.create(apiInterface)
+//    }
 }

@@ -9,13 +9,17 @@ import com.qemer.mwanga.models.GuardianRegistrationRequest
 import com.qemer.mwanga.models.GuardianRegistrationResponse
 import com.qemer.mwanga.models.LoginRequest
 import com.qemer.mwanga.models.LoginResponse
+import com.qemer.mwanga.models.SelfCareRequest
+import com.qemer.mwanga.models.SelfaCareResponse
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Url
 
 interface ApiLoginInterface {
     @POST("api/healthworker/login/")
@@ -35,4 +39,14 @@ interface ApiLoginInterface {
 
     @GET("api/guardians/{id}/")
     fun getGuardianDetails(@Path("id") id: String?): Call<GetGuardianDetails>
+}
+interface ApiService {
+
+    @POST
+    fun postSelfCareData(
+        @Url url: String,
+        @Header("Content-Type") contentType: String,
+        @Header("Authorization") authorization: String,
+        @Body request: SelfCareRequest
+    ): Call<SelfaCareResponse>
 }

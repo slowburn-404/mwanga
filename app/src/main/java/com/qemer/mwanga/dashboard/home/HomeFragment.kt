@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
     private fun addSampleData() {
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setCancelable(false) // set cancelable to false
-        progressDialog.setMessage("Fetching...") // set message
+        progressDialog.setMessage("Loading...") // set message
         progressDialog.show()
 
         apiClient.getApiService(requireContext()).getGuardians().enqueue(object :
@@ -119,7 +119,7 @@ class HomeFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<GetGuardiansResponse>>, t: Throwable) {
-                Log.e("Gideon", "onFailure: ${t.message}")
+                Log.e("Angela", "onFailure: ${t.message}")
                 progressDialog.dismiss()
                 Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
             }

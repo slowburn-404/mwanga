@@ -70,6 +70,7 @@ class ParentsChildrenFragment : Fragment() {
             progressDialog.setCancelable(false) // set cancelable to false
             progressDialog.setMessage("submitting..") // set message
             progressDialog.show()
+            showSuccessModal()
 
             val requestData = GuardianRegistrationRequest(
                 parentName,
@@ -84,7 +85,7 @@ class ParentsChildrenFragment : Fragment() {
                 override fun onResponse(call: Call<GuardianRegistrationResponse>, response: Response<GuardianRegistrationResponse>) {
                     if (response.isSuccessful) {
                         progressDialog.dismiss()
-                        Log.e("Gideon", "onSuccess: ${response.body()!!.id}")
+                        Log.e("Angela", "onSuccess: ${response.body()!!.id}")
                         Snackbar.make(it, "Success", Snackbar.LENGTH_SHORT).show()
                         createChild(response.body()!!.id)
                     } else{
@@ -96,7 +97,7 @@ class ParentsChildrenFragment : Fragment() {
                 override fun onFailure(call: Call<GuardianRegistrationResponse>, t: Throwable) {
                     progressDialog.dismiss()
                     Snackbar.make(it, "${t.message}", Snackbar.LENGTH_SHORT).show()
-                    Log.e("Gideon", "onFailure: ${t.message}")
+                    Log.e("Angela", "onFailure: ${t.message}")
                 }
             })
         }
@@ -173,13 +174,13 @@ class ParentsChildrenFragment : Fragment() {
                             }
                         } else {
                             progressDialog.dismiss()
-                            Log.e("Gideon", response.message())
+                            Log.e("Angela", response.message())
                             Snackbar.make(requireView(), "Failed", Snackbar.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(call: Call<ChildCreateResponse>, t: Throwable) {
-                        Log.e("Gideon", "onFailure: ${t.message}")
+                        Log.e("Angela", "onFailure: ${t.message}")
                         progressDialog.dismiss()
                         Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
                     }

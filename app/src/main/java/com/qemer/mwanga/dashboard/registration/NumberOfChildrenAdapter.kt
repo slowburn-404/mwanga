@@ -88,38 +88,7 @@ class NumberOfChildrenAdapter(private val childrenList: List<NumberOfChildrenMod
             }
         }
 
-//        holder.binding.ltBirth.setOnClickListener {
-//            val calendar = Calendar.getInstance()
-//            val year = calendar.get(Calendar.YEAR)
-//            val month = calendar.get(Calendar.MONTH)
-//            val day = calendar.get(Calendar.DAY_OF_MONTH)
-//
-//            val datePickerDialog = DatePickerDialog(
-//                context,
-//                { _, selectedYear, selectedMonth, selectedDay ->
-//                    val selectedDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
-//                    holder.binding.childDateOfBirth.text = selectedDate
-//                    childrenList[position].DOB = selectedDate
-//                },
-//                year, month, day
-//            )
-//
-//            datePickerDialog.show()
-//        }
 
-//        holder.binding.childDelayedMilestones.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//            }
-//
-//            override fun afterTextChanged(s: Editable?) {
-//
-//                val delayedMilestones = s.toString()
-//                childrenList[position].delayedMilestones= delayedMilestones
-//            }
-//        })
     }
 
     override fun getItemCount(): Int {
@@ -131,40 +100,3 @@ class NumberOfChildrenAdapter(private val childrenList: List<NumberOfChildrenMod
     }
 }
 
-//class NumberOfChildrenAdapter(
-//    private var childrenList: List<NumberOfChildrenModel>,
-//    private val selectedItems: SparseBooleanArray = SparseBooleanArray()
-//) : RecyclerView.Adapter<NumberOfChildrenViewHolder>() {
-//
-//    inner class NumberOfChildrenViewHolder(private val binding: ItemAddChildrenBinding) :
-//        RecyclerView.ViewHolder(binding.root) {
-//        fun bind(child: NumberOfChildrenModel) {
-//            binding.childNumber.text = child.childNumber
-//            binding.childName.editText?.text = child.childName
-//            var childSex = binding.childSex.isChecked
-//            childSex = selectedItems.get(adapterPosition)
-//            childSex = child.gender
-//            binding.childDateOfBirth.editText?.text = child.DOB
-//            binding.childDelayedMilestones.editText?.text = child.delayedmMlestones
-//
-//        }
-//
-//    }
-//
-//    override fun onCreateViewHolder(
-//        parent: ViewGroup, viewType: Int
-//    ): NumberOfChildrenViewHolder {
-//        val binding =
-//            ItemAddChildrenBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-//        return NumberOfChildrenViewHolder(binding)
-//    }
-//
-//    override fun onBindViewHolder(
-//        holder: NumberOfChildrenViewHolder, position: Int
-//    ) {
-//        val item = childrenList[position]
-//        holder.bind(item)
-//    }
-//
-//    override fun getItemCount() = childrenList.size
-//}

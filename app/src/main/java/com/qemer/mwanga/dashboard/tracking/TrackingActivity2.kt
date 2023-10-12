@@ -3,33 +3,52 @@ package com.qemer.mwanga.dashboard.tracking
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
-import com.qemer.mwanga.MainActivity
 import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ActivityTracking2Binding
+import com.qemer.mwanga.utils.Tracking
 
 class TrackingActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityTracking2Binding
     private lateinit var selectedRating: MutableList<MutableList<Int>>
+    var selfCare = 0
+    var dailyLiving = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTracking2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        selfCare =  getIntent().getIntExtra("selfCare" , 0)
+        dailyLiving = getIntent().getIntExtra("dailyLiving", 0)
+        Log.d("debug", selfCare.toString())
+
+
+//        fetchDailyLiving()
 
         val track2 = binding.bntNext
         track2.setOnClickListener {
+////            val accumulatedData = intent.getSerializableExtra("accumulatedData") as? AccumulatedData
+//            if (accumulatedData != null) {
+//                val totalSum = updateTotalSum()
+//                accumulatedData.total += totalSum
+
             val intent = Intent(this, TrackingActivity3::class.java)
+//                intent.putExtra("accumulatedData", accumulatedData)
             startActivity(intent)
         }
+//        }
+
+
+
 
         val track22 = binding.btnBack
         track22.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, TrackingActivity1::class.java)
             startActivity(intent)
             finish()
         }
-
         selectedRating = MutableList(4) { MutableList(5) { 0 } }
 
         for (cardIndex in 0 until 4) {
@@ -45,13 +64,48 @@ class TrackingActivity2 : AppCompatActivity() {
         }
     }
 
+
+//    private fun fetchDailyLiving() {
+//        lifecycleScope.launch {
+//            try {
+//                val apiDailyLivingInterface: ApiDailyLivingInterface = ApiDailyLiving.buildClient(ApiDailyLivingInterface::class.java)
+//
+//                val request = DailyLivingrequest(
+//                    chore = 3,
+//                    cooking = 2,
+//                    washing = 3,
+//                    playing = 5,
+//                    child = "1"
+//                )
+//
+//                val response: Response<DailyLivingResponse> = apiDailyLivingInterface.postData(request)
+//
+//                if (response.isSuccessful) {
+//                    val dailyLivingData = response.body()
+//                    if (dailyLivingData != null) {
+//                        val choreActivities = dailyLivingData.chore
+//                        val cooking = dailyLivingData.cooking
+//                        val washing = dailyLivingData.washing
+//                        val playing = dailyLivingData.playing
+//                        val child = dailyLivingData.child
+//
+//                    }
+//                } else {
+//                }
+//            } catch (e: Exception) {
+//            }
+//        }
+//
+//    }
+
+
+
+
     private fun setActiveRating(cardIndex: Int, ratingIndex: Int) {
         val ratingTextView = getRatingTextView(cardIndex, ratingIndex)
 
-        // Set background color for the selected rating
         ratingTextView.setBackgroundResource(R.drawable.circle_background)
 
-        // Update UI for other ratings (e.g., reset their backgrounds)
         for (i in 0 until 5) {
             if (i != ratingIndex) {
                 val otherRatingTextView = getRatingTextView(cardIndex, i)
@@ -109,7 +163,6 @@ class TrackingActivity2 : AppCompatActivity() {
 
                 3 -> binding.tvFourPlaying
 
-
                 4 -> binding.tvFivePlaying
 
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
@@ -134,7 +187,6 @@ class TrackingActivity2 : AppCompatActivity() {
 
                 else -> throw IllegalArgumentException("Invalid ratingIndex for card 0")
             }
-            // Add cases for other cardIndexes (1, 2, 3, 4) similarly
             else -> throw IllegalArgumentException("Invalid cardIndex")
         }
     }
@@ -144,10 +196,14 @@ class TrackingActivity2 : AppCompatActivity() {
         for (cardIndex in 0 until 4) {
             for (ratingIndex in 0 until 5) {
                 if (selectedRating[cardIndex][ratingIndex] == 1) {
-                    totalSum += ratingIndex + 1 // Add 1 to convert from 0-based to 1-based ratings
+                    totalSum += ratingIndex + 1
                 }
             }
         }
-        binding.textView11.text = " SC + DL = $totalSum"
+        dailyLiving = totalSum
+
+        Tracking.dailyLiving  = totalSum
+        totalSum += Tracking.selfCare
+        binding.textView11.text = " SC : ${Tracking.selfCare} + DL : $dailyLiving = $totalSum"
     }
 }

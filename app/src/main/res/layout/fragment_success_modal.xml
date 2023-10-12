@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentBottom="true"
-    android:accessibilityLiveRegion="polite"
     android:background="@color/main_color"
     tools:context=".dashboard.SuccessModalFragment">
 
@@ -16,19 +14,19 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:clipToOutline="true"
-        android:translationY="-40dp"
         app:cardBackgroundColor="@color/light_grey"
         app:cardCornerRadius="35dp">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:scaleType="centerInside"
-            android:scrollbarDefaultDelayBeforeFade="100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:src="@drawable/material_symbols_check" />
-
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -38,7 +36,7 @@
         android:layout_below="@+id/checkmark"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/ubuntu_bold"
@@ -53,11 +51,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/success_text"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="21dp"
         android:fontFamily="@font/ubuntu_regular"
         android:gravity="center"
         android:padding="8dp"
         android:text="@string/submission_completed"
         android:textColor="@color/white"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
 </RelativeLayout>

@@ -54,7 +54,7 @@ class DetailsFragment : Fragment() {
     private fun getDetails(parentId: String?) {
         val progressDialog = ProgressDialog(requireContext())
         progressDialog.setCancelable(false)
-        progressDialog.setMessage("Fetching...")
+        progressDialog.setMessage("Loading...")
         progressDialog.show()
 
         apiClient.getApiService(requireContext()).getGuardianDetails(parentId).enqueue(object :
@@ -63,7 +63,7 @@ class DetailsFragment : Fragment() {
                 Log.d(SuccessModalFragment.TAG, "responseData" + response.body())
                 if (response.isSuccessful) {
                     progressDialog.dismiss()
-                    Log.d("Gideon", "${response.body()}")
+                    Log.d("Angela", "${response.body()}")
                     binding.parentName.text = response.body()!!.parentName
                     binding.parentsId.text = response.body()!!.nationalId
                     binding.isEligible.text = response.body()!!.isEligible
@@ -74,7 +74,7 @@ class DetailsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<GetGuardianDetails>, t: Throwable) {
-                Log.e("Gideon", "onFailure: ${t.message}")
+                Log.e("Angela", "onFailure: ${t.message}")
                 progressDialog.dismiss()
                 Snackbar.make(requireView(), "${t.message}", Snackbar.LENGTH_SHORT).show()
             }

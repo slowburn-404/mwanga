@@ -17,6 +17,6 @@ class AddChildActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val parentName = intent.getStringExtra("id")
-        Log.d("Gideon", parentName.toString())
+        Log.d("Angela", parentName.toString())
     }
 }

@@ -40,20 +40,7 @@ class AllParentsChildrenFragment : Fragment() {
         successModal.show(requireActivity().supportFragmentManager, SuccessModalFragment.TAG)
     }
 
-//    private fun addSampleData() {
-//        for (i in 1..2) {
-//            parentsChildrenList.add(
-//                ParentsChildrenModel(
-//                    "$i", "Bruce Wayne", "1/1/23", "Male", "0-3 months"
-//                )
-//            )
-//            parentsChildrenAdapter = ParentsChildrenAdapter(parentsChildrenList)
-//            binding.allParentsChildrenRecyclerview.layoutManager =
-//                LinearLayoutManager(requireContext())
-//            binding.allParentsChildrenRecyclerview.setHasFixedSize(true)
-//            binding.allParentsChildrenRecyclerview.adapter = parentsChildrenAdapter
-//        }
-//    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

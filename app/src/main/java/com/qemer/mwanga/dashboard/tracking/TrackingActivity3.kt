@@ -3,32 +3,40 @@ package com.qemer.mwanga.dashboard.tracking
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import com.qemer.mwanga.R
 import com.qemer.mwanga.databinding.ActivityTracking3Binding
+import com.qemer.mwanga.utils.Tracking
 
 class TrackingActivity3 : AppCompatActivity() {
 
     private lateinit var binding: ActivityTracking3Binding
     private lateinit var selectedRating: MutableList<MutableList<Int>>
+    var dailyLiving = 0
+    var movingAbility = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         binding = ActivityTracking3Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        dailyLiving =  getIntent().getIntExtra("dailyLiving" , 0)
+
         val track3 = binding.bntNext
         track3.setOnClickListener {
             val intent = Intent(this, TrackingActivity4::class.java)
             startActivity(intent)
             finish()
         }
+
         val track33 = binding.btnBack
         track33.setOnClickListener {
             val intent = Intent(this, TrackingActivity2::class.java)
             startActivity(intent)
             finish()
         }
+
 
         selectedRating = MutableList(4) { MutableList(5) { 0 } }
 
@@ -49,10 +57,8 @@ class TrackingActivity3 : AppCompatActivity() {
     private fun setActiveRating(cardIndex: Int, ratingIndex: Int) {
         val ratingTextView = getRatingTextView(cardIndex, ratingIndex)
 
-        // Set background color for the selected rating
         ratingTextView.setBackgroundResource(R.drawable.circle_background)
 
-        // Update UI for other ratings (e.g., reset their backgrounds)
         for (i in 0 until 5) {
             if (i != ratingIndex) {
                 val otherRatingTextView = getRatingTextView(cardIndex, i)
@@ -144,10 +150,20 @@ class TrackingActivity3 : AppCompatActivity() {
         for (cardIndex in 0 until 4) {
             for (ratingIndex in 0 until 5) {
                 if (selectedRating[cardIndex][ratingIndex] == 1) {
-                    totalSum += ratingIndex + 1 // Add 1 to convert from 0-based to 1-based ratings
+                    totalSum += ratingIndex + 1
                 }
             }
         }
-        binding.textView11.text = "SC + DL + MA = $totalSum"
+
+//        dailyLiving = dailyLiving
+        Log.d("debug" , Tracking.dailyLiving.toString())
+        movingAbility  = totalSum
+        Tracking.movingAbilty = totalSum
+        totalSum += Tracking.selfCare + Tracking.dailyLiving
+        binding.textView11.text = " SC : ${Tracking.selfCare} + DL : ${Tracking.dailyLiving} + MA: $movingAbility  = $totalSum"
     }
+
+
+
+
 }

@@ -65,6 +65,7 @@ class AddNewChildFragment : Fragment() {
         binding.btSubmit.setOnClickListener {
             val sharedPreferences = requireContext().getSharedPreferences("MwangaPrefs", Context.MODE_PRIVATE)
             val parentId = sharedPreferences.getString("parentId", null)
+            showSuccessModal()
 
             if (TextUtils.isEmpty(binding.childName.text.toString().trim())) {
                 binding.childName.error = "Child's name is required"
@@ -123,13 +124,7 @@ class AddNewChildFragment : Fragment() {
 
         return binding.root
     }
-//    private fun validateFields(): Boolean {
-//        val childName = validateField(binding.childName, "Child's name is required")
-//        val childAge = validateField(binding.childDateOfBirth, "Date of birth is required")
 
-        // Return true if both fields are valid, false otherwise
-//        return childName.isNotEmpty() && childAge.isNotEmpty()
-//    }
 
     private fun validateField(textInputLayout: TextInputLayout, errorMessage: String): String {
         val text = textInputLayout.editText?.text.toString().trim()

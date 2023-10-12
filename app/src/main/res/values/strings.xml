@@ -4,18 +4,18 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="firstonboardingpagedescription" translatable="false">Early detection for healthy children!</string>
     <string name="secondonboardingpagedescription" translatable="false">Let us reduce rickets by promoting a healthy diet!</string>
-    <string name="skip" translatable="false">Skip</string>
+    <string name="skip" translatable="false">Continue</string>
     <string name="name_hint" translatable="false">Enter your name</string>
     <string name="enter_your_password" translatable="false">Enter your password</string>
     <string name="enter_your_phone_number" translatable="false">Enter your phone number</string>
     <string name="home" translatable="false">Home</string>
-    <string name="programs_list" translatable="false">Programs List</string>
+    <string name="programs_list" translatable="false">Parents</string>
     <string name="registration" translatable="false">Registration</string>
     <string name="tracking" translatable="false">Tracking</string>
     <string name="profile" translatable="false">Profile</string>
     <string name="recent_registrations" translatable="false">Recent Registrations</string>
     <string name="view_more" translatable="false">View more</string>
-    <string name="children_in_the_program" translatable="false">Children in the Program</string>
+    <string name="children_in_the_program" translatable="false">Parents</string>
     <string name="name" translatable="false">Name</string>
     <string name="date" translatable="false">Date</string>
     <string name="time" translatable="false">Time</string>
