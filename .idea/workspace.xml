@@ -10,37 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfe085e8-bf7e-409b-b956-4498ea7f9809" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/models/SelfaCareResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/repository/SelfCareRepository.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/utils/Tracking.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/api/ApiLoginInterface.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/api/ApiLoginInterface.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddChildActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddChildActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddNewChildFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/AddNewChildFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/DetailsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/addchild/DetailsFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/home/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/ProgramsListFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/programs/ProgramsListFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/AllParentsChildrenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/AllParentsChildrenFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/NumberOfChildrenAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/NumberOfChildrenAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/ParentsChildrenFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/registration/ParentsChildrenFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity1.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity1.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity2.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity3.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity3.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity4.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingActivity4.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/qemer/mwanga/dashboard/tracking/TrackingFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-v31/fragment_success_modal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout-v31/fragment_success_modal.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_success_modal.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_success_modal.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,11 +64,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Kotlin Object" />
         <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
