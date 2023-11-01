@@ -57,11 +57,12 @@
                     android:layout_height="match_parent"
                     android:backgroundTint="@android:color/transparent"
                     android:orientation="horizontal">
+
                     <androidx.appcompat.widget.SearchView
                         android:id="@+id/programs_list_search_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"/>
+                        android:layout_gravity="center_vertical|center_horizontal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -108,8 +109,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1.2"
-                    android:gravity="center"
                     android:fontFamily="@font/ubuntu_bold"
+                    android:gravity="center"
                     android:text="Date"
                     android:textColor="@color/main_color"
                     android:textSize="16sp" />
@@ -121,15 +122,15 @@
                     android:layout_gravity="center"
                     android:layout_weight="1.2"
                     android:fontFamily="@font/ubuntu_bold"
-                    android:textColor="@color/main_color"
                     android:gravity="center"
                     android:text="Time"
+                    android:textColor="@color/main_color"
                     android:textSize="16sp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/programs_list_recycler_view"
+            android:id="@+id/children_list_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"

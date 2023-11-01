@@ -83,15 +83,15 @@ class ProgramsListFragment : Fragment(){
                     originalRecentRegistrationsList.clear()
                     originalRecentRegistrationsList.addAll(response.body()!!)
                     recentRegistrationsAdapter = RecentRegistrationsAdapter(response.body()!!, requireContext())
-                    binding.programsListRecyclerView.adapter = recentRegistrationsAdapter
+                    binding.childrenListRecyclerView.adapter = recentRegistrationsAdapter
                     val layoutManager: RecyclerView.LayoutManager = object : LinearLayoutManager(requireContext()) {
                         override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
                             return RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
                         }
                     }
-                    binding.programsListRecyclerView.layoutManager = layoutManager
-                    binding.programsListRecyclerView.isNestedScrollingEnabled = true
-                    binding.programsListRecyclerView.setHasFixedSize(true)
+                    binding.childrenListRecyclerView.layoutManager = layoutManager
+                    binding.childrenListRecyclerView.isNestedScrollingEnabled = true
+                    binding.childrenListRecyclerView.setHasFixedSize(true)
                 } else {
                     progressDialog.dismiss()
                     Snackbar.make(requireView(), "Failed to get data, Retry!!", Snackbar.LENGTH_SHORT).show()

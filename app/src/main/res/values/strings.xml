@@ -49,6 +49,7 @@
     <string name="activity_of_daily_living" translatable="false">Activity of Daily Living</string>
     <string name="moving_ability" translatable="false">Moving Ability</string>
     <string name="track" translatable="false">Track</string>
+    <string name="children">Children</string>
     <string-array name="milestones_array">
         <item>Cannot sit</item>
         <item>Cannot Move Head</item>
